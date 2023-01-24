@@ -5,15 +5,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.7.5</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.henry</groupId>
-    <artifactId>facetcher-backend</artifactId>
+    <artifactId>facetcher</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>facetcher-backend</name>
-    <description>facetcher-backend</description>
+    <name>facetcher</name>
+    <description>facetcher</description>
 
     <properties>
         <java.version>11</java.version>

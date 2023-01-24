@@ -1,13 +1,13 @@
-package com.henry.facetcherbackend;
+package com.henry.facetcher;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FacetcherBackendApplication {
+public class FacetcherApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FacetcherBackendApplication.class, args);
+        SpringApplication.run(FacetcherApplication.class, args);
     }
 
 }
