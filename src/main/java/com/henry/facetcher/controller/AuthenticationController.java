@@ -34,7 +34,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/current")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse currentLoggedUser() {
         log.info("AuthenticationController: currentLoggedUser() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
@@ -42,7 +42,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh-token")
-//    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         log.info("AuthenticationController: refreshToken() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
@@ -50,7 +50,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/log-out")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse logout() {
         log.info("AuthenticationController: logout() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
