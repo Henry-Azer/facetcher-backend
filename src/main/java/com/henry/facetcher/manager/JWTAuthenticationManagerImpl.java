@@ -14,6 +14,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityExistsException;
+
 /**
  * @author Henry Azer
  * @since 04/11/2022
@@ -42,8 +44,8 @@ public class JWTAuthenticationManagerImpl implements JWTAuthenticationManager {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
             return new AuthResponse(jwtAuthenticationUtil.generateAccessToken(authRequest.getEmail()), Long.valueOf(JWT_ACCESS_TOKEN_EXPIRATION_MS),
                     refreshTokenService.createRefreshToken(authRequest.getEmail()).getToken(), Long.valueOf(JWT_REFRESH_TOKEN_EXPIRATION_MS));
-        } catch (AuthenticationException authenticationException) {
-            throw new RuntimeException("Invalid email or password");
+        } catch (EntityExistsException | AuthenticationException exception) {
+            throw new RuntimeException(exception.getMessage());
         }
     }
 
