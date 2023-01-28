@@ -1,7 +1,6 @@
 -- liquibase formatted sql
 
 -- changeset henry:20230124_create_user_table
-
 CREATE SEQUENCE public.user_id_sequence
     INCREMENT 1
     START 1
@@ -34,3 +33,16 @@ CREATE TABLE public.user
     CONSTRAINT user_email_unq UNIQUE (email)
 
 ) TABLESPACE pg_default;
+
+-- changeset henry:20230128_insert_user_into_user_table
+INSERT INTO public."user" (id, first_name, last_name, email, password, phone_number, birthdate, country, age, gender,
+                           marital_status, image_url, created_date, modified_date, created_by, modified_by, marked_as_deleted)
+VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'user', 'user@facetcher.com', '$2a$10$jD3HszxL5W22oMbFeBJ1DeEpCPvTxrps7lBIS/baTUeoHD3OxHebW',
+        null, null, null, null, null, null, null, current_timestamp, current_timestamp, 'ADMIN', 'ADMIN', false);
+
+-- changeset henry:20230128_insert_admin_into_user_table
+INSERT INTO public."user" (id, first_name, last_name, email, password, phone_number, birthdate, country, age, gender,
+                           marital_status, image_url, created_date, modified_date, created_by, modified_by, marked_as_deleted)
+VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'admin', 'admin@facetcher.com', '$2a$10$jD3HszxL5W22oMbFeBJ1DeEpCPvTxrps7lBIS/baTUeoHD3OxHebW',
+        null, null, null, null, null, null, null, current_timestamp, current_timestamp, 'ADMIN', 'ADMIN', false);
+
