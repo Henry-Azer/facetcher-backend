@@ -29,7 +29,7 @@ public class UserController implements BaseController<UserService> {
     }
 
     @GetMapping("/find-all-genders")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse getUserGenders() {
         log.info("UserController: getUserGenders() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
@@ -37,7 +37,7 @@ public class UserController implements BaseController<UserService> {
     }
 
     @GetMapping("/find-all-martial-statuses")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse getUserMartialStatuses() {
         log.info("UserController: getUserMartialStatuses() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
@@ -45,6 +45,7 @@ public class UserController implements BaseController<UserService> {
     }
 
     @GetMapping("/find-is-email-exists/{email}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse checkIsEmailAlreadyExists(@PathVariable String email) {
         log.info("UserController: checkIsEmailAlreadyExists() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
@@ -52,6 +53,7 @@ public class UserController implements BaseController<UserService> {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ApiResponse createUser(@RequestBody UserDto userDto) {
         log.info("UserController: createUser() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
@@ -59,10 +61,18 @@ public class UserController implements BaseController<UserService> {
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse updateUser(@RequestBody UserDto userDto) {
         log.info("UserController: updateUser() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
                 "User updated successfully.", getService().update(userDto, userDto.getId()));
+    }
+
+    @PutMapping("/{userId}/toggle-deletion")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ApiResponse toggleUserDeletionById(@PathVariable Long userId) {
+        log.info("UserController: toggleUserDeletionById() called");
+        return new ApiResponse(true, LocalDateTime.now().toString(),
+                "User deletion toggled successfully.", getService().toggleUserDeletionById(userId));
     }
 }
