@@ -1,7 +1,6 @@
 -- liquibase formatted sql
 
 -- changeset henry:20230124_create_refresh_token_table
-
 CREATE SEQUENCE public.refresh_token_id_sequence
     INCREMENT 1
     START 1
