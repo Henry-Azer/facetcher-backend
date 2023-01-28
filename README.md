@@ -1,2 +1,3 @@
-# facetcher-backend
-Facetcher java application.
+# Facetcher Backend
+
+Facetcher backend java application.
