@@ -5,5 +5,7 @@
 
     <include file="/db/chengelog/20230124_user-table.sql"/>
     <include file="db/chengelog/20230124_refresh-token-table.sql"/>
+    <include file="db/chengelog/20230128_role-table.sql"/>
+    <include file="db/chengelog/20230128_user-role-table.sql"/>
 
 </databaseChangeLog>
