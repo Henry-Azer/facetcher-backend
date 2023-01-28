@@ -1,4 +1,4 @@
-package com.henry.facetcher.entity;
+package com.henry.facetcher.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

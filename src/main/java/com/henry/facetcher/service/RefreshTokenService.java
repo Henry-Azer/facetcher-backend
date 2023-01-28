@@ -2,7 +2,7 @@ package com.henry.facetcher.service;
 
 
 import com.henry.facetcher.dto.base.request.RefreshTokenRequest;
-import com.henry.facetcher.entity.RefreshToken;
+import com.henry.facetcher.model.RefreshToken;
 
 /**
  * @author Henry Azer

@@ -1,6 +1,6 @@
 package com.henry.facetcher.dao;
 
-import com.henry.facetcher.entity.RefreshToken;
+import com.henry.facetcher.model.RefreshToken;
 
 import java.util.Optional;
 

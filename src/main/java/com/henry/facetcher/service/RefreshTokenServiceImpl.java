@@ -3,7 +3,7 @@ package com.henry.facetcher.service;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.henry.facetcher.dao.RefreshTokenDao;
 import com.henry.facetcher.dto.base.request.RefreshTokenRequest;
-import com.henry.facetcher.entity.RefreshToken;
+import com.henry.facetcher.model.RefreshToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

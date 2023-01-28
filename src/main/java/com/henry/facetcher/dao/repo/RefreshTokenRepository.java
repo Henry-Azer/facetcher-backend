@@ -1,6 +1,6 @@
 package com.henry.facetcher.dao.repo;
 
-import com.henry.facetcher.entity.RefreshToken;
+import com.henry.facetcher.model.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
