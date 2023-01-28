@@ -1,7 +1,7 @@
 package com.henry.facetcher.transformer.mapper.base;
 
 import com.henry.facetcher.dto.base.BaseDto;
-import com.henry.facetcher.entity.base.BaseEntity;
+import com.henry.facetcher.model.base.BaseEntity;
 import org.mapstruct.*;
 
 /**
