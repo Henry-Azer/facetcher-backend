@@ -1,6 +1,6 @@
-package com.henry.facetcher.entity;
+package com.henry.facetcher.model;
 
-import com.henry.facetcher.entity.base.BaseEntity;
+import com.henry.facetcher.model.base.BaseEntity;
 import com.henry.facetcher.enums.UserGender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import lombok.AllArgsConstructor;
@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @author Henry Azer
@@ -60,4 +61,7 @@ public class User extends BaseEntity {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<UserRole> userRoles;
 }

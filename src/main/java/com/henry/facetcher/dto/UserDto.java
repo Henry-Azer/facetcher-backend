@@ -3,12 +3,10 @@ package com.henry.facetcher.dto;
 import com.henry.facetcher.dto.base.BaseDto;
 import com.henry.facetcher.enums.UserGender;
 import com.henry.facetcher.enums.UserMartialStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Henry Azer
@@ -18,6 +16,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class UserDto extends BaseDto {
     private Long id;
     private String firstName;
@@ -31,4 +30,5 @@ public class UserDto extends BaseDto {
     private UserGender gender;
     private UserMartialStatus maritalStatus;
     private String imageUrl;
+    private List<UserRoleDto> userRoles;
 }
