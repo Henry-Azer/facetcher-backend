@@ -4,7 +4,7 @@ import com.henry.facetcher.dao.base.BaseDao;
 import com.henry.facetcher.dto.base.BaseDto;
 import com.henry.facetcher.dto.base.request.PaginationRequest;
 import com.henry.facetcher.dto.base.response.PaginationResponse;
-import com.henry.facetcher.entity.base.BaseEntity;
+import com.henry.facetcher.model.base.BaseEntity;
 import com.henry.facetcher.transformer.base.BaseTransformer;
 import org.springframework.data.domain.Page;
 
@@ -66,8 +66,8 @@ public interface BaseService<Entity extends BaseEntity, Dto extends BaseDto, Dao
         getDao().deleteById(id);
     }
 
-    default PaginationResponse<Dto> findAllUsersPaginatedRequest(PaginationRequest paginationRequest) {
-        Page<Entity> entities = getDao().findAllUsersPaginatedRequest(paginationRequest);
+    default PaginationResponse<Dto> findAllPaginatedRequest(PaginationRequest paginationRequest) {
+        Page<Entity> entities = getDao().findAllPaginatedRequest(paginationRequest);
         return buildPaginationResponse(entities);
     }
 

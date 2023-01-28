@@ -3,7 +3,7 @@ package com.henry.facetcher.dao.base;
 import com.henry.facetcher.dto.base.pagination.SortingBy;
 import com.henry.facetcher.dto.base.pagination.SortingDirection;
 import com.henry.facetcher.dto.base.request.PaginationRequest;
-import com.henry.facetcher.entity.base.BaseEntity;
+import com.henry.facetcher.model.base.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -28,7 +28,7 @@ public interface BaseDao<Entity extends BaseEntity, Repository extends JpaReposi
         return getRepository().findAll();
     }
 
-    default Page<Entity> findAllUsersPaginatedRequest(PaginationRequest paginationRequest) {
+    default Page<Entity> findAllPaginatedRequest(PaginationRequest paginationRequest) {
         PageRequest pageRequest = PageRequest.of(paginationRequest.getPageNumber() - 1, paginationRequest.getPageSize(), buildSort(paginationRequest));
         if (paginationRequest.getPageSize() == -1) paginationRequest.setPageSize(Integer.MAX_VALUE);
         return getRepository().findAll(pageRequest);
