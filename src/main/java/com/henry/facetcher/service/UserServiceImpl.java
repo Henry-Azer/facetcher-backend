@@ -2,7 +2,7 @@ package com.henry.facetcher.service;
 
 import com.henry.facetcher.dao.UserDao;
 import com.henry.facetcher.dto.UserDto;
-import com.henry.facetcher.entity.User;
+import com.henry.facetcher.model.User;
 import com.henry.facetcher.enums.UserGender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import com.henry.facetcher.manager.JWTAuthenticationManager;
@@ -51,20 +51,25 @@ public class UserServiceImpl implements UserService {
     public UserDto create(UserDto dto) {
         log.info("UserService: create() called");
         // check if email already exists
-        if (getDao().isUserExistsByEmail(dto.getEmail()))
-            throw new EntityExistsException("User email already exists - " + dto.getEmail());
-
+        if (getDao().isUserExistsByEmail(dto.getEmail())) throw new EntityExistsException("User email already exists - " + dto.getEmail());
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         User transformedDtoToEntity = getTransformer().transformDtoToEntity(dto);
         return getTransformer().transformEntityToDto(getDao().create(transformedDtoToEntity));
     }
 
     @Override
+    public UserDto findById(Long userId) {
+        log.info("UserService: findById() called");
+        Optional<User> optionalUser = getDao().findById(userId);
+        if (optionalUser.isEmpty()) throw new EntityExistsException("User not exists for id: " + userId);
+        return getTransformer().transformEntityToDto(optionalUser.get());
+    }
+
+    @Override
     public UserDto findUserByEmail(String email) {
         log.info("UserService: findUserByEmail() called");
         Optional<User> optionalUser = getDao().findUserByEmail(email);
-        if (optionalUser.isEmpty())
-            throw new EntityExistsException("User not exists for email: " + email);
+        if (optionalUser.isEmpty()) throw new EntityExistsException("User not exists for email: " + email);
         return getTransformer().transformEntityToDto(optionalUser.get());
     }
 
@@ -90,5 +95,13 @@ public class UserServiceImpl implements UserService {
     public Boolean isUserExistsByEmail(String email) {
         log.info("UserService: isUserExistsByEmail() called");
         return getDao().isUserExistsByEmail(email);
+    }
+
+    @Override
+    public UserDto toggleUserDeletionById(Long userId) {
+        log.info("UserService: toggleUserDeletionById() called");
+        UserDto userDto = findById(userId);
+        userDto.setMarkedAsDeleted(!userDto.getMarkedAsDeleted());
+        return update(userDto, userDto.getId());
     }
 }

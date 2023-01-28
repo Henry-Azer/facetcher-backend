@@ -1,6 +1,6 @@
 package com.henry.facetcher.dao.repo;
 
-import com.henry.facetcher.entity.User;
+import com.henry.facetcher.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

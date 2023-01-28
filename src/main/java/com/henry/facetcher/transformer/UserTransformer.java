@@ -1,7 +1,7 @@
 package com.henry.facetcher.transformer;
 
 import com.henry.facetcher.dto.UserDto;
-import com.henry.facetcher.entity.User;
+import com.henry.facetcher.model.User;
 import com.henry.facetcher.transformer.base.BaseTransformer;
 import com.henry.facetcher.transformer.mapper.UserMapper;
 import lombok.AllArgsConstructor;

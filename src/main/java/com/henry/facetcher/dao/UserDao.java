@@ -2,7 +2,7 @@ package com.henry.facetcher.dao;
 
 import com.henry.facetcher.dao.base.BaseDao;
 import com.henry.facetcher.dao.repo.UserRepository;
-import com.henry.facetcher.entity.User;
+import com.henry.facetcher.model.User;
 
 import java.util.Optional;
 
@@ -12,6 +12,5 @@ import java.util.Optional;
  */
 public interface UserDao extends BaseDao<User, UserRepository> {
     Optional<User> findUserByEmail(String email);
-
     Boolean isUserExistsByEmail(String email);
 }

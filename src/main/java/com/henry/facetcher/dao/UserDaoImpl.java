@@ -1,7 +1,7 @@
 package com.henry.facetcher.dao;
 
 import com.henry.facetcher.dao.repo.UserRepository;
-import com.henry.facetcher.entity.User;
+import com.henry.facetcher.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
