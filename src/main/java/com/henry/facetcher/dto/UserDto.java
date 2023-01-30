@@ -5,6 +5,8 @@ import com.henry.facetcher.enums.UserGender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import lombok.*;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +29,9 @@ public class UserDto extends BaseDto {
     private Date birthdate;
     private String country;
     private Integer age;
+    @Enumerated(EnumType.STRING)
     private UserGender gender;
+    @Enumerated(EnumType.STRING)
     private UserMartialStatus maritalStatus;
     private String imageUrl;
     private List<UserRoleDto> userRoles;

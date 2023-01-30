@@ -54,9 +54,11 @@ public class User extends BaseEntity {
     private Integer age;
 
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private UserGender gender;
 
     @Column(name = "marital_status")
+    @Enumerated(EnumType.STRING)
     private UserMartialStatus maritalStatus;
 
     @Column(name = "image_url")
