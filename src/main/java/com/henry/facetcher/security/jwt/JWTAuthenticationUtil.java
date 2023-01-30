@@ -18,10 +18,10 @@ import java.util.Date;
 @Component
 public class JWTAuthenticationUtil {
 
-    @Value("${library.security.jwtSecret}")
+    @Value("${facetcher.security.jwtSecret}")
     private String JWT_AUTHENTICATION_SECRET;
 
-    @Value("${library.security.jwt.accessToken.expirationMs}")
+    @Value("${facetcher.security.jwt.accessToken.expirationMs}")
     private String JWT_ACCESS_TOKEN_EXPIRATION_MS;
 
     public String generateAccessToken(String email) throws JWTCreationException {

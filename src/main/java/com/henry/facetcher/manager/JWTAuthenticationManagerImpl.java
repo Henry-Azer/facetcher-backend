@@ -26,9 +26,9 @@ public class JWTAuthenticationManagerImpl implements JWTAuthenticationManager {
     private final JWTAuthenticationUtil jwtAuthenticationUtil;
     private final AuthenticationManager authenticationManager;
     private final RefreshTokenService refreshTokenService;
-    @Value("${library.security.jwt.accessToken.expirationMs}")
+    @Value("${facetcher.security.jwt.accessToken.expirationMs}")
     private String JWT_ACCESS_TOKEN_EXPIRATION_MS;
-    @Value("${library.security.jwt.refreshToken.expirationMs}")
+    @Value("${facetcher.security.jwt.refreshToken.expirationMs}")
     private String JWT_REFRESH_TOKEN_EXPIRATION_MS;
 
     public JWTAuthenticationManagerImpl(JWTAuthenticationUtil jwtAuthenticationUtil, @Lazy AuthenticationManager authenticationManager, RefreshTokenService refreshTokenService) {

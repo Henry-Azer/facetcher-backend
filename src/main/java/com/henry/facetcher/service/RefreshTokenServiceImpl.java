@@ -22,7 +22,7 @@ import java.util.*;
 public class RefreshTokenServiceImpl implements RefreshTokenService {
     private final RefreshTokenDao refreshTokenDao;
 
-    @Value("${library.security.jwt.refreshToken.expirationMs}")
+    @Value("${facetcher.security.jwt.refreshToken.expirationMs}")
     private String JWT_REFRESH_TOKEN_EXPIRATION_MS;
 
     @Override
