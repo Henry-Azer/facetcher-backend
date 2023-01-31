@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset henry:20230124_create_user_role_table
+-- changeset henry:20230128_create_user_role_table
 CREATE SEQUENCE public.user_role_id_sequence
     INCREMENT 1
     START 1

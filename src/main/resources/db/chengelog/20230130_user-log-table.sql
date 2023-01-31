@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset henry:20230124_create_user_log_table
+-- changeset henry:20230130_create_user_log_table
 CREATE SEQUENCE public.user_log_id_sequence
     INCREMENT 1
     START 1
