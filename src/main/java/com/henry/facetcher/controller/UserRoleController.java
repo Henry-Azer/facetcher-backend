@@ -28,12 +28,12 @@ public class UserRoleController implements BaseController<UserRoleService> {
         return userRoleService;
     }
 
-    @PostMapping
+    @PostMapping("/assign")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ApiResponse createUserRole(@RequestBody UserRoleDto userRoleDto) {
-        log.info("UserRoleController: createUserRole() called");
+    public ApiResponse assignUserRole(@RequestBody UserRoleDto userRoleDto) {
+        log.info("UserRoleController: assignUserRole() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Role created successfully.", getService().create(userRoleDto));
+                "User Role assigned successfully.", getService().create(userRoleDto));
     }
 
     @PutMapping("/{userRoleId}/toggle-deletion")
