@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserTrialRepo extends JpaRepository<UserTrial, Long> {
+    Long countAllByTitle(String title);
 }
