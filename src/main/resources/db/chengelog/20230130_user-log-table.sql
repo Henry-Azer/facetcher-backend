@@ -24,6 +24,6 @@ CREATE TABLE public.user_log
     marked_as_deleted BOOLEAN                NOT NULL DEFAULT FALSE,
 
     CONSTRAINT user_log_pk PRIMARY KEY (id),
-    CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES public.user (id)
+    CONSTRAINT user_log_user_id_fk FOREIGN KEY (user_id) REFERENCES public.user (id)
 
 ) TABLESPACE pg_default;

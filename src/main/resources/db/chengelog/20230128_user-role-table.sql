@@ -21,9 +21,9 @@ CREATE TABLE public.user_role
     marked_as_deleted BOOLEAN                NOT NULL DEFAULT FALSE,
 
     CONSTRAINT user_role_pk PRIMARY KEY (id),
-    CONSTRAINT user_id_role_id_unq UNIQUE (user_id, role_id),
-    CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES public.user (id),
-    CONSTRAINT role_id_fk FOREIGN KEY (role_id) REFERENCES public.role (id)
+    CONSTRAINT user_role_user_id_role_id_unq UNIQUE (user_id, role_id),
+    CONSTRAINT user_role_user_id_fk FOREIGN KEY (user_id) REFERENCES public.user (id),
+    CONSTRAINT user_role_role_id_fk FOREIGN KEY (role_id) REFERENCES public.role (id)
 
 ) TABLESPACE pg_default;
 

@@ -21,7 +21,7 @@ CREATE TABLE public.role
     marked_as_deleted BOOLEAN                NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY (id),
-    CONSTRAINT role_name_unq UNIQUE (name)
+    CONSTRAINT user_role_name_unq UNIQUE (name)
 
 ) TABLESPACE pg_default;
 
