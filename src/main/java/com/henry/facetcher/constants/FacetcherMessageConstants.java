@@ -1,7 +1,8 @@
 package com.henry.facetcher.constants;
 
 public interface FacetcherMessageConstants {
-    String LOGGED_IN_ASPECT = " - Logged in successfully at: ";
-    String LOGGED_OUT_ASPECT = " - Logged out successfully at: ";
-
+    String LOGGED_IN_ASPECT = " - Login at: ";
+    String LOGGED_OUT_ASPECT = " - Logout at: ";
+    String TRIAL_MESSAGE = " - Trial at: ";
+    String SUBMISSION_MESSAGE = " - Submit at: ";
 }
