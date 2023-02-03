@@ -1,7 +1,7 @@
 package com.henry.facetcher.dto;
 
 import com.henry.facetcher.dto.base.BaseDto;
-import com.henry.facetcher.enums.UserGender;
+import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import lombok.*;
 
@@ -30,7 +30,7 @@ public class UserDto extends BaseDto {
     private String country;
     private Integer age;
     @Enumerated(EnumType.STRING)
-    private UserGender gender;
+    private Gender gender;
     @Enumerated(EnumType.STRING)
     private UserMartialStatus maritalStatus;
     private String imageUrl;

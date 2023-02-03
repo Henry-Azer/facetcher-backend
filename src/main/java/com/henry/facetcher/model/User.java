@@ -1,7 +1,7 @@
 package com.henry.facetcher.model;
 
 import com.henry.facetcher.model.base.BaseEntity;
-import com.henry.facetcher.enums.UserGender;
+import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,7 +55,7 @@ public class User extends BaseEntity {
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
-    private UserGender gender;
+    private Gender gender;
 
     @Column(name = "marital_status")
     @Enumerated(EnumType.STRING)
