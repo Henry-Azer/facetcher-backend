@@ -1,5 +1,6 @@
 package com.henry.facetcher.model;
 
+import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.model.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +38,10 @@ public class UserTrial extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "output_image_id", referencedColumnName = "id", nullable = false)
     private Image outputImage;
+
+    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "title")
     private String title;
