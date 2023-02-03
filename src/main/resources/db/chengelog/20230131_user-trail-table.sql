@@ -14,6 +14,7 @@ CREATE TABLE public.user_trial
     user_id           BIGINT                 NOT NULL,
     input_image_id    BIGINT                 NOT NULL,
     output_image_id   BIGINT                 NOT NULL,
+    gender            CHARACTER VARYING(50)  NOT NULL,
     title             CHARACTER VARYING(250) NOT NULL,
     description       TEXT                   NOT NULL,
     trial_date        TIMESTAMP              NOT NULL,
