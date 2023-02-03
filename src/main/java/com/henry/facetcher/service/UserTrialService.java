@@ -11,4 +11,5 @@ import com.henry.facetcher.transformer.UserTrialTransformer;
  * @since 31/01/2023
  */
 public interface UserTrialService extends BaseService<UserTrial, UserTrialDto, UserTrialDao, UserTrialTransformer> {
+    UserTrialDto processUserTrial(UserTrialDto userTrialDto);
 }
