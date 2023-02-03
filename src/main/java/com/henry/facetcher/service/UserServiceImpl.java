@@ -3,7 +3,7 @@ package com.henry.facetcher.service;
 import com.henry.facetcher.dao.UserDao;
 import com.henry.facetcher.dto.UserDto;
 import com.henry.facetcher.model.User;
-import com.henry.facetcher.enums.UserGender;
+import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import com.henry.facetcher.manager.JWTAuthenticationManager;
 import com.henry.facetcher.transformer.UserTransformer;
@@ -74,9 +74,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserGender> getUserGenders() {
+    public List<Gender> getUserGenders() {
         log.info("UserService: getUserGenders() called");
-        return new ArrayList<>(EnumSet.allOf(UserGender.class));
+        return new ArrayList<>(EnumSet.allOf(Gender.class));
     }
 
     @Override
