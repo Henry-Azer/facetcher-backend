@@ -1,7 +1,9 @@
 package com.henry.facetcher.dto;
 
 import com.henry.facetcher.dto.base.BaseDto;
+import com.henry.facetcher.enums.Gender;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -18,10 +20,13 @@ public class UserTrialDto extends BaseDto {
     private Long id;
     private UserDto user;
     private Long userId;
+    private MultipartFile inputImageFile;
     private ImageDto inputImage;
     private Long inputImageId;
+    private MultipartFile outputImageFile;
     private ImageDto outputImage;
     private Long outputImageId;
+    private Gender gender;
     private String title;
     private String description;
     private LocalDateTime trialDate;
