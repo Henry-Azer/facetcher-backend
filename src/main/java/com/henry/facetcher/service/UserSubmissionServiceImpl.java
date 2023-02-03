@@ -44,7 +44,7 @@ public class UserSubmissionServiceImpl implements UserSubmissionService {
     public UserSubmissionDto create(UserSubmissionDto dto) {
         log.info("UserSubmissionService: create() called");
         UserSubmission transformedDtoToEntity = getTransformer().transformDtoToEntity(dto);
-        transformedDtoToEntity.setUser(userService.getTransformer().transformDtoToEntity(userService.findById(dto.getUserId())));
+        transformedDtoToEntity.setUser(userService.getTransformer().transformDtoToEntity(userService.getCurrentUser()));
         transformedDtoToEntity.setInputImage(imageService.getTransformer().transformDtoToEntity(imageService.findById(dto.getInputImageId())));
         transformedDtoToEntity.setOutputImage(imageService.getTransformer().transformDtoToEntity(imageService.findById(dto.getOutputImageId())));
         return getTransformer().transformEntityToDto(getDao().create(transformedDtoToEntity));
@@ -74,7 +74,6 @@ public class UserSubmissionServiceImpl implements UserSubmissionService {
     private UserSubmissionDto mapUserTrialDtoToUserSubmissionDto(UserTrialDto userTrialDto) {
         log.info("UserSubmissionService: mapUserTrialDtoToUserSubmissionDto() called");
         UserSubmissionDto userSubmissionDto = new UserSubmissionDto();
-        userSubmissionDto.setUserId(userService.getCurrentUser().getId());
         userTrialDto.setOutputImageId(userTrialDto.getOutputImageId());
         userTrialDto.setInputImageId(userTrialDto.getInputImageId());
         userSubmissionDto.setSubmissionDate(LocalDateTime.now());
