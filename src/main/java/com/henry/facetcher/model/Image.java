@@ -29,6 +29,6 @@ public class Image extends BaseEntity {
     private String name;
 
     @Lob
-    @Column(name = "image", nullable = false, columnDefinition = "BLOB")
+    @Column(name = "image", nullable = false, columnDefinition = "bytea")
     private byte[] image;
 }
