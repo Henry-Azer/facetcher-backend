@@ -1,5 +1,6 @@
 package com.henry.facetcher.model;
 
+import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.model.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,13 +31,26 @@ public class UserSubmission extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
+    @Column(name = "user_id", insertable = false, updatable = false)
+    private Long userId;
+
     @OneToOne
     @JoinColumn(name = "input_image_id", referencedColumnName = "id", nullable = false)
     private Image inputImage;
 
+    @Column(name = "input_image_id", insertable = false, updatable = false)
+    private Long inputImageId;
+
     @OneToOne
     @JoinColumn(name = "output_image_id", referencedColumnName = "id", nullable = false)
     private Image outputImage;
+
+    @Column(name = "output_image_id", insertable = false, updatable = false)
+    private Long outputImageId;
+
+    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "title")
     private String title;
@@ -52,4 +66,7 @@ public class UserSubmission extends BaseEntity {
 
     @Column(name = "submission_message")
     private String submissionMessage;
+
+    @Column(name = "submitted")
+    private Boolean submitted;
 }
