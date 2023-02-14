@@ -5,10 +5,13 @@ import com.henry.facetcher.dto.ImageDto;
 import com.henry.facetcher.model.Image;
 import com.henry.facetcher.service.base.BaseService;
 import com.henry.facetcher.transformer.ImageTransformer;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Henry Azer
  * @since 31/01/2023
  */
 public interface ImageService extends BaseService<Image, ImageDto, ImageDao, ImageTransformer> {
+    ImageDto constructImageDto(MultipartFile inputImage);
+    ImageDto constructImageDto(MultipartFile inputImage, String imageName);
 }
