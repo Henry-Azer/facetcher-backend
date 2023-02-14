@@ -9,7 +9,7 @@
     <include file="db/chengelog/20230128_user-role-table.sql"/>
     <include file="db/chengelog/20230130_user-log-table.sql"/>
     <include file="db/chengelog/20230131_image-table.sql"/>
-    <include file="db/chengelog/20230131_user-trail-table.sql"/>
     <include file="db/chengelog/20230131_user-submission-table.sql"/>
+    <include file="db/chengelog/20230131_user-trail-table.sql"/>
 
 </databaseChangeLog>
