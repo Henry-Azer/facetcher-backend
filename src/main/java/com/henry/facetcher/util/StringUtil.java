@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * @author Henry Azer
@@ -17,9 +16,7 @@ public class StringUtil {
 
     public static String getRandomImageName(String imageName) {
         log.info("StringUtil: getRandomImageName() called");
-        Random random = new Random();
-        return "IMG-" + new SimpleDateFormat("dd-MM-yyyy").format(new Date())
-                + "-" + (random.nextInt(100000) + 10000) + getFileExtension(imageName);
+        return "IMG-" + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "-" + NumberUtil.randomFiveDigits() + getFileExtension(imageName);
     }
 
     public static String getFileExtension(String fileName) {
