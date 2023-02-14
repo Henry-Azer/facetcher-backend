@@ -6,9 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author Henry Azer
@@ -27,17 +31,43 @@ public class UserTrial extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_trial_id_sequence")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
+
+    @Column(name = "user_id", insertable = false, updatable = false)
+    private Long userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "user_submission_id", referencedColumnName = "id", nullable = false)
+    private UserSubmission userSubmission;
+
+    @Column(name = "user_submission_id", insertable = false, updatable = false)
+    private Long userSubmissionId;
 
     @OneToOne
     @JoinColumn(name = "input_image_id", referencedColumnName = "id", nullable = false)
     private Image inputImage;
 
+    @Column(name = "input_image_id", insertable = false, updatable = false)
+    private Long inputImageId;
+
     @OneToOne
     @JoinColumn(name = "output_image_id", referencedColumnName = "id", nullable = false)
     private Image outputImage;
+
+    @Column(name = "output_image_id", insertable = false, updatable = false)
+    private Long outputImageId;
+
+    @Column(name = "image_properties")
+    private String imageProperties;
+
+    @Column(name = "exception_occurred")
+    private Boolean exceptionOccurred;
+
+    @Column(name = "exception_message")
+    private String exceptionMessage;
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
@@ -54,4 +84,17 @@ public class UserTrial extends BaseEntity {
 
     @Column(name = "trial_message")
     private String trailMessage;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        UserTrial userTrial = (UserTrial) o;
+        return id != null && Objects.equals(id, userTrial.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

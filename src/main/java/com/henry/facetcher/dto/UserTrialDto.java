@@ -1,11 +1,13 @@
 package com.henry.facetcher.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.henry.facetcher.dto.base.BaseDto;
 import com.henry.facetcher.enums.Gender;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author Henry Azer
@@ -18,14 +20,23 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class UserTrialDto extends BaseDto {
     private Long id;
-    private UserDto user;
     private Long userId;
-    private MultipartFile inputImageFile;
-    private ImageDto inputImage;
+    private Long userSubmissionId;
+    @JsonIgnore
+    private UserSubmissionDto userSubmission;
     private Long inputImageId;
-    private MultipartFile outputImageFile;
-    private ImageDto outputImage;
+    private ImageDto inputImage;
+    @JsonIgnore
+    private MultipartFile inputImageFile;
     private Long outputImageId;
+    private ImageDto outputImage;
+    @JsonIgnore
+    private MultipartFile outputImageFile;
+    @JsonIgnore
+    private List<String> processProperties;
+    private Boolean exceptionOccurred;
+    private String exceptionMessage;
+    private String imageProperties;
     private Gender gender;
     private String title;
     private String description;
