@@ -37,12 +37,12 @@ CREATE TABLE public.user
 -- changeset henry:20230128_insert_user_into_user_table
 INSERT INTO public."user" (id, first_name, last_name, email, password, phone_number, birthdate, country, age, gender,
                            marital_status, image_url, created_date, modified_date, created_by, modified_by, marked_as_deleted)
-VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'user', 'user@facetcher.com', '$2a$10$cE2jKDRW8e6GkejzLqbXQOo6W8o6KMc0z0Fc6h5U.j09FvzZ.LxdO',
+VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'user', 'user@facetcher.com', '$2a$12$nnFrVqr5Mo51pvBRin1pe.BytlgyqOgSan470pccN9bM88N5DCH8e',
         null, null, null, null, null, null, null, current_timestamp, current_timestamp, 'ADMIN', 'ADMIN', false);
 
 -- changeset henry:20230128_insert_admin_into_user_table
 INSERT INTO public."user" (id, first_name, last_name, email, password, phone_number, birthdate, country, age, gender,
                            marital_status, image_url, created_date, modified_date, created_by, modified_by, marked_as_deleted)
-VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'admin', 'admin@facetcher.com', '$2a$10$0aaKKw/NQzKjN/3q0B/Nv.0ejkh8XgKnefsP/x.IjHdWQjKkqeiKO',
+VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'admin', 'admin@facetcher.com', '$2a$12$UoP4x2cm.yUFB0eUAa6jW.on8MXbWnVaIoM1mkZ2.KhUWzUVuEQIq',
         null, null, null, null, null, null, null, current_timestamp, current_timestamp, 'ADMIN', 'ADMIN', false);
 
