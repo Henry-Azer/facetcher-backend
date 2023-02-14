@@ -35,9 +35,8 @@ public class SecurityConfigurations {
         httpSecurity
                 .csrf().disable().httpBasic().disable().cors()
                 .and().authorizeHttpRequests()
-                .antMatchers("/api/user/register").permitAll()
                 .antMatchers("/api/auth/log-in").permitAll()
-                .antMatchers("/book-service/api/**").authenticated()
+                .antMatchers("/facetcher-service/api/**").authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
