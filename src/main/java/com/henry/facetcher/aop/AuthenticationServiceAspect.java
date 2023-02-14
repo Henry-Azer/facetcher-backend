@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-import static com.henry.facetcher.constants.FacetcherMessageConstants.LOGGED_IN_ASPECT;
-import static com.henry.facetcher.constants.FacetcherMessageConstants.LOGGED_OUT_ASPECT;
+import static com.henry.facetcher.constants.FacetcherConstants.LOGGED_IN_ASPECT;
+import static com.henry.facetcher.constants.FacetcherConstants.LOGGED_OUT_ASPECT;
 
 /**
  * @author Henry Azer
