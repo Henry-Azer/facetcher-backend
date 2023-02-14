@@ -13,7 +13,11 @@ import java.util.List;
  * @since 31/01/2023
  */
 public interface UserSubmissionService extends BaseService<UserSubmission, UserSubmissionDto, UserSubmissionDao, UserSubmissionTransformer> {
+    Long findUserSubmissionsCountByCurrentUser();
+    List<UserSubmissionDto> findAllUserSubmissions();
+    List<UserSubmissionDto> findAllUserSubmissionsByUserId(Long userId);
     List<UserSubmissionDto> findAllUserSubmissionsByCurrentUser();
+    UserSubmissionDto createOrUpdate(UserSubmissionDto userSubmissionDto);
     UserSubmissionDto submitUserSubmissionByUserTrialId(Long userTrialId);
     UserSubmissionDto toggleUserSubmissionDeletionById(Long userSubmissionId);
 }

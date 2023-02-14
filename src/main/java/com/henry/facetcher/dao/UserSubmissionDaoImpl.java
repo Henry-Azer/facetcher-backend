@@ -5,6 +5,7 @@ import com.henry.facetcher.model.UserSubmission;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Henry Azer
@@ -24,7 +25,22 @@ public class UserSubmissionDaoImpl implements UserSubmissionDao {
     }
 
     @Override
+    public Optional<UserSubmission> findById(Long userSubmissionId) {
+        return getRepository().findUserSubmissionByIdAndMarkedAsDeletedFalse(userSubmissionId);
+    }
+
+    @Override
+    public List<UserSubmission> findAllUserSubmissions() {
+        return getRepository().findAllByMarkedAsDeletedFalse();
+    }
+
+    @Override
     public List<UserSubmission> findAllUserSubmissionsByUserId(Long userId) {
         return getRepository().findAllByUserIdAndMarkedAsDeletedFalse(userId);
+    }
+
+    @Override
+    public Long countUserSubmissionsByUserId(Long userId) {
+        return getRepository().countByUserIdAndMarkedAsDeletedFalse(userId);
     }
 }

@@ -11,5 +11,7 @@ import java.util.List;
  * @since 31/01/2023
  */
 public interface UserSubmissionDao extends BaseDao<UserSubmission, UserSubmissionRepo> {
+    List<UserSubmission> findAllUserSubmissions();
     List<UserSubmission> findAllUserSubmissionsByUserId(Long userId);
+    Long countUserSubmissionsByUserId(Long userId);
 }
