@@ -14,16 +14,9 @@ import org.mapstruct.Mapping;
  */
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, config = GenericMapperConfiguration.class)
 public interface UserTrialMapper extends BaseMapper<UserTrial, UserTrialDto> {
-
     @Override
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "inputImageId", source = "inputImage.id")
     @Mapping(target = "outputImageId", source = "outputImage.id")
     UserTrialDto entityToDto(UserTrial entity);
-
-    @Override
-    @Mapping(target = "user", ignore = true)
-    @Mapping(target = "inputImage", ignore = true)
-    @Mapping(target = "outputImage", ignore = true)
-    UserTrial dtoToEntity(UserTrialDto dto);
 }
