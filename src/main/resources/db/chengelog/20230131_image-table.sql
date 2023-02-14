@@ -12,7 +12,7 @@ CREATE TABLE public.image
 (
     id                BIGINT                 NOT NULL DEFAULT nextval('image_id_sequence'::regclass),
     name              CHARACTER VARYING(100) NOT NULL,
-    image             BIGINT                  NOT NULL,
+    image             BIGINT                 NOT NULL,
 
     created_date      TIMESTAMP              NOT NULL,
     modified_date     TIMESTAMP              NOT NULL,
