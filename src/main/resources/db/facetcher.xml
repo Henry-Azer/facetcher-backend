@@ -11,5 +11,6 @@
     <include file="db/chengelog/20230131_image-table.sql"/>
     <include file="db/chengelog/20230131_user-submission-table.sql"/>
     <include file="db/chengelog/20230131_user-trail-table.sql"/>
+    <include file="db/chengelog/20230215_user-message-table.sql"/>
 
 </databaseChangeLog>
