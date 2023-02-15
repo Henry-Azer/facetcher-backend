@@ -73,7 +73,7 @@ public class UserSubmissionController implements BaseController<UserSubmissionSe
     public ApiResponse createOrUpdateUserSubmission(@RequestBody UserSubmissionDto userSubmissionDto) {
         log.info("UserSubmissionController: createOrUpdateUserSubmission() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Submission submitted successfully.", getService().createOrUpdate(userSubmissionDto));
+                "User Submission created successfully.", getService().createOrUpdate(userSubmissionDto));
     }
 
     @PutMapping("/{userSubmissionId}/toggle-deletion")
