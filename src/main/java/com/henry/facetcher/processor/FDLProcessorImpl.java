@@ -32,18 +32,29 @@ public class FDLProcessorImpl implements FDLProcessor {
     public void process(UserTrialDto userTrialDto) {
         log.info("FDLProcessor: process() called");
         userTrialDto.setInputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImageFile())));
-        File inputImageFile = writeImageToFDL(userTrialDto.getInputImage().getImage(), userTrialDto.getInputImage().getName());
         userTrialDto.setProcessProperties(generateFDLImageProperties(userTrialDto.getInputImage().getName(), userTrialDto.getGender()));
         userTrialDto.setImageProperties(userTrialDto.getProcessProperties().toString());
-        processImageFDL(userTrialDto);
-        inputImageFile.delete();
-        if (userTrialDto.getExceptionOccurred()) return;
-        MultipartFile outputImageMultipartFile = extractImageMultipartFileFromFDL(userTrialDto.getInputImage().getName());
-        userTrialDto.setOutputImage(imageService.create(imageService.constructImageDto(outputImageMultipartFile, userTrialDto.getInputImage().getName())));
-        File outputImageFile = extractImageFileFromFDL(userTrialDto.getInputImage().getName());
-        outputImageFile.delete();
+        userTrialDto.setOutputImage(userTrialDto.getInputImage());
+        userTrialDto.setExceptionOccurred(false);
         log.info("FDLProcessor: process() ended");
     }
+
+//    @Override
+//    public void process(UserTrialDto userTrialDto) {
+//        log.info("FDLProcessor: process() called");
+//        userTrialDto.setInputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImageFile())));
+//        File inputImageFile = writeImageToFDL(userTrialDto.getInputImage().getImage(), userTrialDto.getInputImage().getName());
+//        userTrialDto.setProcessProperties(generateFDLImageProperties(userTrialDto.getInputImage().getName(), userTrialDto.getGender()));
+//        userTrialDto.setImageProperties(userTrialDto.getProcessProperties().toString());
+//        processImageFDL(userTrialDto);
+//        inputImageFile.delete();
+//        if (userTrialDto.getExceptionOccurred()) return;
+//        MultipartFile outputImageMultipartFile = extractImageMultipartFileFromFDL(userTrialDto.getInputImage().getName());
+//        userTrialDto.setOutputImage(imageService.create(imageService.constructImageDto(outputImageMultipartFile, userTrialDto.getInputImage().getName())));
+//        File outputImageFile = extractImageFileFromFDL(userTrialDto.getInputImage().getName());
+//        outputImageFile.delete();
+//        log.info("FDLProcessor: process() ended");
+//    }
 
     private void processImageFDL(UserTrialDto userTrialDto) {
         log.info("FDLProcessor: processImageFDL() called");
