@@ -1,7 +1,6 @@
 package com.henry.facetcher.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,12 +10,11 @@ import java.util.Date;
  * @since 03/02/2023
  */
 @Slf4j
-@Component
 public class StringUtil {
 
-    public static String getRandomImageName(String imageName) {
+    public static String getRandomImageName(String imageName, String id) {
         log.info("StringUtil: getRandomImageName() called");
-        return "IMG-" + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "-" + NumberUtil.randomFiveDigits() + getFileExtension(imageName);
+        return "IMG-" + new SimpleDateFormat("ddMMyyyy").format(new Date()) + "-" + id + "-" + NumberUtil.randomFiveDigits() + getFileExtension(imageName);
     }
 
     public static String getFileExtension(String fileName) {
