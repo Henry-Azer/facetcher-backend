@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -74,5 +75,17 @@ public class UserController implements BaseController<UserService> {
         log.info("UserController: toggleUserDeletionById() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
                 "User deletion toggled successfully.", getService().toggleUserDeletionById(userId));
+    }
+
+    @PostMapping(value = "/profile-picture", consumes = {"multipart/form-data"})
+    public ApiResponse uploadUserProfilePicture(@RequestBody MultipartFile photo) {
+        return new ApiResponse(true, LocalDateTime.now().toString(),
+                "User profile picture uploaded successfully.", getService().setUserProfilePicture(photo));
+    }
+
+    @DeleteMapping(value = "/profile-picture")
+    public ApiResponse removeUserProfilePicture() {
+        return new ApiResponse(true, LocalDateTime.now().toString(),
+                "User profile picture deleted successfully.", getService().removeUserProfilePicture());
     }
 }
