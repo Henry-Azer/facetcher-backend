@@ -6,8 +6,11 @@ public interface FacetcherConstants {
     String TRIAL_MESSAGE = " - Trial at: ";
     String SUBMISSION_MESSAGE = " - Submit at: ";
     String FDL_EXCEPTION = "FDL - Exception Occurred";
+    String FDL_OUTPUT_FILE = "FDL - Output File: ";
     String FDL_PATH = "/src/main/resources/fdl/fdl_model.py";
     String FDL_DIRECTORY_PATH = "/src/main/resources/fdl";
-    String INPUT_IMAGE_PATH = "src/main/resources/fdl/image_input/";
-    String OUTPUT_IMAGE_PATH = "src/main/resources/fdl/image_output/";
+    String FPP_BUCKET = "facetcher-profile-picture";
+    String FPP_CDN = "d3e4rlz7jqgc00";
+    String FII_BUCKET = "facetcher-input-image";
+    String FII_CDN = "d3s53aojgba13r";
 }
