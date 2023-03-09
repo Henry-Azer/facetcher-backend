@@ -63,8 +63,8 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserMartialStatus maritalStatus;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "profile_picture_url")
+    private String profilePictureUrl;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles;

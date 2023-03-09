@@ -33,6 +33,6 @@ public class UserDto extends BaseDto {
     private Gender gender;
     @Enumerated(EnumType.STRING)
     private UserMartialStatus maritalStatus;
-    private String imageUrl;
+    private String profilePictureUrl;
     private List<UserRoleDto> userRoles;
 }
