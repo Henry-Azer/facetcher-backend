@@ -7,6 +7,7 @@ import com.henry.facetcher.manager.JWTAuthenticationManager;
 import com.henry.facetcher.model.UserTrial;
 import com.henry.facetcher.processor.FDLProcessor;
 import com.henry.facetcher.transformer.UserTrialTransformer;
+import com.henry.facetcher.util.FDLGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -71,9 +72,6 @@ public class UserTrialServiceImpl implements UserTrialService {
         log.info("UserTrialService: create() called");
         UserTrial transformedDtoToEntity = getTransformer().transformDtoToEntity(dto);
         transformedDtoToEntity.setUser(userService.getTransformer().transformDtoToEntity(userService.getCurrentUser()));
-        transformedDtoToEntity.setInputImage(imageService.getTransformer().transformDtoToEntity(imageService.findById(dto.getInputImage().getId())));
-        transformedDtoToEntity.setUserSubmission(userSubmissionService.getTransformer().transformDtoToEntity(userSubmissionService.findById(dto.getUserSubmissionId())));
-        if (!dto.getExceptionOccurred()) transformedDtoToEntity.setOutputImage(imageService.getTransformer().transformDtoToEntity(imageService.findById(dto.getOutputImage().getId())));
         return getTransformer().transformEntityToDto(getDao().create(transformedDtoToEntity));
     }
 
@@ -100,11 +98,15 @@ public class UserTrialServiceImpl implements UserTrialService {
         log.info("UserTrialService: processUserTrial() called");
         userTrialDto.setUserSubmission(userSubmissionService.findById(userTrialDto.getUserSubmissionId()));
         userTrialDto.setGender(userTrialDto.getUserSubmission().getGender());
-        fdlProcessor.process(userTrialDto);
+        userTrialDto.setInputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImageFile())));
+        userTrialDto.setProcessProperties(FDLGenerator.generateFDLImageProperties(userTrialDto.getInputImage().getImageUrl(), userTrialDto.getGender()));
+        userTrialDto.setImageProperties(userTrialDto.getProcessProperties().toString());
+        String outputURL = fdlProcessor.process(userTrialDto);
         userTrialDto.setTrialDate(LocalDateTime.now());
-        userTrialDto.setTitle(userTrialDto.getUserSubmission().getTitle());
-        userTrialDto.setDescription(userTrialDto.getUserSubmission().getDescription());
+        if (!outputURL.isEmpty()) userTrialDto.setOutputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImage().getName(), outputURL)));
         userTrialDto.setTrailMessage(authenticationManager.getCurrentUserEmail() + TRIAL_MESSAGE + userTrialDto.getTrialDate());
+        userTrialDto.setDescription(userTrialDto.getUserSubmission().getDescription());
+        userTrialDto.setTitle(userTrialDto.getUserSubmission().getTitle());
         UserTrialDto dbUserTrialDto = create(userTrialDto);
         if (userTrialDto.getExceptionOccurred()) throw new EntityNotFoundException("Invalid FDL processor image input, Try again!");
         return dbUserTrialDto;

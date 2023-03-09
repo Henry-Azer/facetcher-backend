@@ -7,5 +7,5 @@ import com.henry.facetcher.dto.UserTrialDto;
  * @since 12/02/2023
  */
 public interface FDLProcessor {
-    void process(UserTrialDto userTrialDto);
+    String process(UserTrialDto userTrialDto);
 }
