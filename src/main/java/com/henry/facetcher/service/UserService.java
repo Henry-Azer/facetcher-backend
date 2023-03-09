@@ -7,6 +7,7 @@ import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import com.henry.facetcher.service.base.BaseService;
 import com.henry.facetcher.transformer.UserTransformer;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface UserService extends BaseService<User, UserDto, UserDao, UserTra
     UserDto getCurrentUser();
     Boolean isUserExistsByEmail(String email);
     UserDto toggleUserDeletionById(Long userId);
+    UserDto setUserProfilePicture(MultipartFile photo);
+    UserDto removeUserProfilePicture();
 }
