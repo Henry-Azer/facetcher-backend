@@ -31,8 +31,6 @@ public class UserTrialDto extends BaseDto {
     private Long outputImageId;
     private ImageDto outputImage;
     @JsonIgnore
-    private MultipartFile outputImageFile;
-    @JsonIgnore
     private List<String> processProperties;
     private Boolean exceptionOccurred;
     private String exceptionMessage;
