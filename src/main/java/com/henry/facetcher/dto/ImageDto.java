@@ -15,5 +15,5 @@ import lombok.*;
 public class ImageDto extends BaseDto {
     private Long id;
     private String name;
-    private byte[] image;
+    private String imageUrl;
 }

@@ -30,9 +30,8 @@ public class Image extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Lob
-    @Column(name = "image", nullable = false, columnDefinition = "bytea")
-    private byte[] image;
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
 
     @Override
     public boolean equals(Object o) {
