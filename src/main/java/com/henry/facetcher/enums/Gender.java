@@ -5,7 +5,7 @@ package com.henry.facetcher.enums;
  * @since 04/11/2022
  */
 public enum Gender {
-    MALE("MALE", 1), FEMALE("FEMALE", 0);
+    MALE("MALE", 0), FEMALE("FEMALE", 1);
 
     private final String gender;
     private final Integer value;
