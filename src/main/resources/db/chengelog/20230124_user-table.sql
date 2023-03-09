@@ -46,3 +46,6 @@ INSERT INTO public."user" (id, first_name, last_name, email, password, phone_num
 VALUES (nextval('user_id_sequence'::regclass), 'facetcher', 'admin', 'admin@facetcher.com', '$2a$12$UoP4x2cm.yUFB0eUAa6jW.on8MXbWnVaIoM1mkZ2.KhUWzUVuEQIq',
         null, null, null, null, null, null, null, current_timestamp, current_timestamp, 'ADMIN', 'ADMIN', false);
 
+-- changeset henry:20230305_rename_image_column
+ALTER TABLE public.user RENAME COLUMN image_url TO profile_picture_url;
+ALTER TABLE public.user ALTER COLUMN profile_picture_url TYPE VARCHAR(255);
