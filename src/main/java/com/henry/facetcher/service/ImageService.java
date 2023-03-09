@@ -12,6 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 31/01/2023
  */
 public interface ImageService extends BaseService<Image, ImageDto, ImageDao, ImageTransformer> {
-    ImageDto constructImageDto(MultipartFile inputImage);
-    ImageDto constructImageDto(MultipartFile inputImage, String imageName);
+    ImageDto constructImageDto(MultipartFile image);
+    ImageDto constructImageDto(String imageName, String url);
 }

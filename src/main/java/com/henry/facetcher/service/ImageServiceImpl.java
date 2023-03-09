@@ -2,6 +2,8 @@ package com.henry.facetcher.service;
 
 import com.henry.facetcher.dao.ImageDao;
 import com.henry.facetcher.dto.ImageDto;
+import com.henry.facetcher.manager.JWTAuthenticationManager;
+import com.henry.facetcher.storage.S3StorageService;
 import com.henry.facetcher.transformer.ImageTransformer;
 import com.henry.facetcher.util.StringUtil;
 import lombok.AllArgsConstructor;
@@ -9,7 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import static com.henry.facetcher.constants.FacetcherConstants.FII_BUCKET;
+import static com.henry.facetcher.constants.FacetcherConstants.FII_CDN;
 
 /**
  * @author Henry Azer
@@ -21,6 +24,9 @@ import java.io.IOException;
 public class ImageServiceImpl implements ImageService {
     private final ImageTransformer imageTransformer;
     private final ImageDao imageDao;
+    private final S3StorageService storageService;
+    private final JWTAuthenticationManager authenticationManager;
+    private final UserService userService;
 
     @Override
     public ImageTransformer getTransformer() {
@@ -33,28 +39,26 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public ImageDto constructImageDto(MultipartFile inputImage) {
+    public ImageDto constructImageDto(MultipartFile image) {
         log.info("ImageService: constructImageDto() called");
         ImageDto imageDto = new ImageDto();
-        imageDto.setName(StringUtil.getRandomImageName(inputImage.getOriginalFilename()));
-        try {
-            imageDto.setImage(inputImage.getBytes());
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        uploadImage(image, imageDto);
         return imageDto;
     }
 
     @Override
-    public ImageDto constructImageDto(MultipartFile inputImage, String imageName) {
+    public ImageDto constructImageDto(String imageName, String url) {
         log.info("ImageService: constructImageDto() called");
         ImageDto imageDto = new ImageDto();
         imageDto.setName(imageName);
-        try {
-            imageDto.setImage(inputImage.getBytes());
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+        imageDto.setImageUrl(url);
         return imageDto;
+    }
+
+    private void uploadImage(MultipartFile inputImage, ImageDto imageDto) {
+        log.info("ImageService: uploadImage() called");
+        imageDto.setName(StringUtil.getRandomImageName(inputImage.getOriginalFilename(),
+                userService.findUserByEmail(authenticationManager.getCurrentUserEmail()).getId().toString()));
+        imageDto.setImageUrl(storageService.uploadS3File(inputImage, imageDto.getName(), FII_CDN,FII_BUCKET));
     }
 }
