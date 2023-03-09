@@ -23,3 +23,7 @@ CREATE TABLE public.image
     CONSTRAINT image_pk PRIMARY KEY (id)
 
 ) TABLESPACE pg_default;
+
+-- changeset henry:20230305_modify_image_table_alter_image_url
+ALTER TABLE public.image DROP COLUMN image;
+ALTER TABLE public.image ADD COLUMN image_url CHARACTER VARYING(255) NOT NULL;
