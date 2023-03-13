@@ -35,26 +35,6 @@ public class StorageServiceImpl implements StorageService {
         this.s3Url = s3Url;
     }
 
-//    @Override
-//    public byte[] downloadFile(String bucketName, String fileObjKeyName) {
-//        try {
-//            S3Object object = amazonS3.getObject(bucketName, fileObjKeyName);
-//            S3ObjectInputStream objectContent = object.getObjectContent();
-//            return IOUtils.toByteArray(objectContent);
-//        } catch (AmazonServiceException | IOException exception) {
-//            throw new IllegalStateException("StorageService - Failed to download the file: ", exception);
-//        }
-//    }
-
-    @Override
-    public void removeFile(String bucketName, String fileObjKeyName) {
-        try {
-            amazonS3.deleteObject(bucketName, fileObjKeyName);
-        } catch (AmazonServiceException exception) {
-            throw new IllegalStateException("StorageService - Failed to remove the file: ", exception);
-        }
-    }
-
     @Override
     public String uploadFile(MultipartFile file, String fileName) {
         Map<String, String> metadata = new HashMap<>();
@@ -84,4 +64,14 @@ public class StorageServiceImpl implements StorageService {
             throw new IllegalStateException("StorageService - Failed to upload the file: ", exception);
         }
     }
+
+    @Override
+    public void removeFile(String bucketName, String fileObjKeyName) {
+        try {
+            amazonS3.deleteObject(bucketName, fileObjKeyName);
+        } catch (AmazonServiceException exception) {
+            throw new IllegalStateException("StorageService - Failed to remove the file: ", exception);
+        }
+    }
+
 }

@@ -6,7 +6,7 @@ import com.henry.facetcher.model.User;
 import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
 import com.henry.facetcher.manager.JWTAuthenticationManager;
-import com.henry.facetcher.storage.S3StorageService;
+import com.henry.facetcher.storage.StorageManager;
 import com.henry.facetcher.transformer.UserTransformer;
 import com.henry.facetcher.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -35,9 +35,9 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final JWTAuthenticationManager jwtAuthenticationManager;
     private final PasswordEncoder passwordEncoder;
-    private final S3StorageService storageService;
+    private final StorageManager storageService;
 
-    public UserServiceImpl(UserTransformer userTransformer, UserDao userDao, JWTAuthenticationManager jwtAuthenticationManager, @Lazy PasswordEncoder passwordEncoder, S3StorageService storageService) {
+    public UserServiceImpl(UserTransformer userTransformer, UserDao userDao, JWTAuthenticationManager jwtAuthenticationManager, @Lazy PasswordEncoder passwordEncoder, StorageManager storageService) {
         this.userTransformer = userTransformer;
         this.userDao = userDao;
         this.jwtAuthenticationManager = jwtAuthenticationManager;
@@ -118,8 +118,8 @@ public class UserServiceImpl implements UserService {
     public UserDto setUserProfilePicture(MultipartFile photo) {
         log.info("UserService: setUserProfilePicture() called");
         UserDto userDto = findUserByEmail(jwtAuthenticationManager.getCurrentUserEmail());
-        if (userDto.getProfilePictureUrl() != null) storageService.removeS3File(userDto.getProfilePictureUrl(), FPP_BUCKET);
-        userDto.setProfilePictureUrl(storageService.uploadS3File(photo, StringUtil.getRandomImageName(photo.getOriginalFilename(),
+        if (userDto.getProfilePictureUrl() != null) storageService.removeFile(userDto.getProfilePictureUrl(), FPP_BUCKET);
+        userDto.setProfilePictureUrl(storageService.uploadFile(photo, StringUtil.getRandomImageName(photo.getOriginalFilename(),
                 userDto.getId().toString()), FPP_CDN, FPP_BUCKET));
         return update(userDto, userDto.getId());
     }
@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService {
         log.info("UserService: removeUserProfilePicture() called");
         UserDto userDto = findUserByEmail(jwtAuthenticationManager.getCurrentUserEmail());
         if (userDto.getProfilePictureUrl() != null) {
-            storageService.removeS3File(userDto.getProfilePictureUrl(), FPP_BUCKET);
+            storageService.removeFile(userDto.getProfilePictureUrl(), FPP_BUCKET);
             userDto.setProfilePictureUrl(null);
         }
         return update(userDto, userDto.getId());

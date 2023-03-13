@@ -3,7 +3,7 @@ package com.henry.facetcher.service;
 import com.henry.facetcher.dao.ImageDao;
 import com.henry.facetcher.dto.ImageDto;
 import com.henry.facetcher.manager.JWTAuthenticationManager;
-import com.henry.facetcher.storage.S3StorageService;
+import com.henry.facetcher.storage.StorageManager;
 import com.henry.facetcher.transformer.ImageTransformer;
 import com.henry.facetcher.util.StringUtil;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ import static com.henry.facetcher.constants.FacetcherConstants.FII_CDN;
 public class ImageServiceImpl implements ImageService {
     private final ImageTransformer imageTransformer;
     private final ImageDao imageDao;
-    private final S3StorageService storageService;
+    private final StorageManager storageService;
     private final JWTAuthenticationManager authenticationManager;
     private final UserService userService;
 
@@ -59,6 +59,6 @@ public class ImageServiceImpl implements ImageService {
         log.info("ImageService: uploadImage() called");
         imageDto.setName(StringUtil.getRandomImageName(inputImage.getOriginalFilename(),
                 userService.findUserByEmail(authenticationManager.getCurrentUserEmail()).getId().toString()));
-        imageDto.setImageUrl(storageService.uploadS3File(inputImage, imageDto.getName(), FII_CDN,FII_BUCKET));
+        imageDto.setImageUrl(storageService.uploadFile(inputImage, imageDto.getName(), FII_CDN,FII_BUCKET));
     }
 }
