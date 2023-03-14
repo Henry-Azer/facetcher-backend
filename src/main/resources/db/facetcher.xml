@@ -3,6 +3,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+    <include file="/db/chengelog/20230314_cloud_file_table.sql"/>
+    <include file="/db/chengelog/20230314_config_value_table.sql"/>
     <include file="/db/chengelog/20230124_user-table.sql"/>
     <include file="db/chengelog/20230124_refresh-token-table.sql"/>
     <include file="db/chengelog/20230128_role-table.sql"/>
