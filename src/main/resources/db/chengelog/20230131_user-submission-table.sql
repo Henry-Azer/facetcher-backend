@@ -34,3 +34,12 @@ CREATE TABLE public.user_submission
     CONSTRAINT user_submission_output_image_id_fk FOREIGN KEY (output_image_id) REFERENCES public.image (id)
 
 ) TABLESPACE pg_default;
+
+
+-- changeset henry:20230314_update_user_submission_table_add_file_column
+ALTER TABLE public.user_submission
+ADD COLUMN file_id BIGINT NULL;
+
+ALTER TABLE public.user_submission
+ADD CONSTRAINT user_submission_file_id_fk FOREIGN KEY (file_id) REFERENCES public.cloud_file (id);
+
