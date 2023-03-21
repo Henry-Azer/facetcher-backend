@@ -32,6 +32,7 @@ public class FDLProcessorImpl implements FDLProcessor {
             processBuilder.directory(new File(System.getProperties().get("user.dir") + configValueService.findConfigValueByConfigKey(FDL_DIRECTORY_PATH)));
             Process process = processBuilder.start();
 
+            log.info("FDLProcessor: process() started");
             BufferedReader processOutputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String outputURL = "";
             String processOutputLine;
@@ -45,10 +46,10 @@ public class FDLProcessorImpl implements FDLProcessor {
                         exceptionStored = true;
                     }
                 }
-                if (processOutputLine.equals(configValueService.findConfigValueByConfigKey(FDL_EXCEPTION)))
+                if (processOutputLine.equals(FDL_EXCEPTION))
                     userTrialDto.setExceptionOccurred(true);
-                if (processOutputLine.contains(configValueService.findConfigValueByConfigKey(FDL_OUTPUT_FILE)))
-                    outputURL = processOutputLine.replace(configValueService.findConfigValueByConfigKey(FDL_OUTPUT_FILE) + " ", "");
+                if (processOutputLine.contains(FDL_OUTPUT_FILE))
+                    outputURL = processOutputLine.replace(FDL_OUTPUT_FILE + " ", "");
                 System.out.println("FDL Process Output: " + processOutputLine);
             }
 

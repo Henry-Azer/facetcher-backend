@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.henry.facetcher.constants.FacetcherConstants.TRIAL_MESSAGE;
+import static com.henry.facetcher.constants.FacetcherConstants.*;
 
 /**
  * @author Henry Azer
@@ -100,9 +100,9 @@ public class UserTrialServiceImpl implements UserTrialService {
         log.info("UserTrialService: processUserTrial() called");
         userTrialDto.setUserSubmission(userSubmissionService.findById(userTrialDto.getUserSubmissionId()));
         userTrialDto.setGender(userTrialDto.getUserSubmission().getGender());
-        userTrialDto.setInputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImageFile())));
-        userTrialDto.setProcessProperties(FDLGenerator.generateFDLImageProperties(userTrialDto.getInputImage().getImageUrl(), userTrialDto.getGender()));
-        userTrialDto.setImageProperties(userTrialDto.getProcessProperties().toString());
+        userTrialDto.setInputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImageFile(), configValueService.findConfigValueByConfigKey(FII_BUCKET), configValueService.findConfigValueByConfigKey(FII_CDN))));
+        userTrialDto.setProcessProperties(FDLGenerator.generateFDLImageProperties(userTrialDto.getInputImage().getImageUrl(), userTrialDto.getGender(), configValueService.findConfigValueByConfigKey(ACCESS_KEY),
+                configValueService.findConfigValueByConfigKey(SECRET_KEY), configValueService.findConfigValueByConfigKey(FIO_BUCKET), configValueService.findConfigValueByConfigKey(FIO_CDN), configValueService.findConfigValueByConfigKey(REGION_STATIC)));userTrialDto.setImageProperties(userTrialDto.getProcessProperties().toString());
         String outputURL = fdlProcessor.process(userTrialDto);
         userTrialDto.setTrialDate(LocalDateTime.now());
         if (!outputURL.isEmpty()) userTrialDto.setOutputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImage().getName(), outputURL)));

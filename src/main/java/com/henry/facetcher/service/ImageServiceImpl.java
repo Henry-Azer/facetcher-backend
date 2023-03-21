@@ -11,9 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.henry.facetcher.constants.FacetcherConstants.FII_BUCKET;
-import static com.henry.facetcher.constants.FacetcherConstants.FII_CDN;
-
 /**
  * @author Henry Azer
  * @since 31/01/2023
@@ -25,8 +22,8 @@ public class ImageServiceImpl implements ImageService {
     private final ImageTransformer imageTransformer;
     private final ImageDao imageDao;
     private final StorageManager storageService;
-    private final JWTAuthenticationManager authenticationManager;
     private final UserService userService;
+    private final JWTAuthenticationManager authenticationManager;
 
     @Override
     public ImageTransformer getTransformer() {
@@ -39,10 +36,11 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public ImageDto constructImageDto(MultipartFile image) {
+    public ImageDto constructImageDto(MultipartFile image, String bucket, String cdn) {
         log.info("ImageService: constructImageDto() called");
         ImageDto imageDto = new ImageDto();
-        uploadImage(image, imageDto);
+        imageDto.setName(StringUtil.getRandomImageName(image.getOriginalFilename(), userService.findUserByEmail(authenticationManager.getCurrentUserEmail()).getId().toString()));
+        imageDto.setImageUrl(storageService.uploadFile(image, imageDto.getName(), cdn, bucket));
         return imageDto;
     }
 
@@ -53,12 +51,5 @@ public class ImageServiceImpl implements ImageService {
         imageDto.setName(imageName);
         imageDto.setImageUrl(url);
         return imageDto;
-    }
-
-    private void uploadImage(MultipartFile inputImage, ImageDto imageDto) {
-        log.info("ImageService: uploadImage() called");
-        imageDto.setName(StringUtil.getRandomImageName(inputImage.getOriginalFilename(),
-                userService.findUserByEmail(authenticationManager.getCurrentUserEmail()).getId().toString()));
-        imageDto.setImageUrl(storageService.uploadFile(inputImage, imageDto.getName(), FII_CDN,FII_BUCKET));
     }
 }

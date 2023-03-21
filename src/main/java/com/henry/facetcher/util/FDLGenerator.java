@@ -13,12 +13,17 @@ import java.util.List;
 @Slf4j
 public class FDLGenerator {
 
-    public static List<String> generateFDLImageProperties(String inputImageURL, Gender gender) {
+    public static List<String> generateFDLImageProperties(String inputImageURL, Gender gender, String accessKey, String secretKey, String bucket, String cdn, String region) {
         log.info("FDLGenerator: generateFDLImageProperties() called");
         List<String> properties = new ArrayList<>();
         properties.add(inputImageURL);
         properties.addAll(generateFDLParams());
         properties.add(gender.getValue().toString());
+        properties.add(accessKey);
+        properties.add(secretKey);
+        properties.add(bucket);
+        properties.add(cdn);
+        properties.add(region);
         return properties;
     }
 

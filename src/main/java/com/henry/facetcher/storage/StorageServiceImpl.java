@@ -14,7 +14,7 @@ import java.util.Optional;
 
 /**
  * @author Henry Azer
- * @since  07/03/2023
+ * @since 07/03/2023
  */
 public class StorageServiceImpl implements StorageService {
     private final AmazonS3 amazonS3;
@@ -53,9 +53,9 @@ public class StorageServiceImpl implements StorageService {
             request.setCannedAcl(CannedAccessControlList.PublicRead);
             amazonS3.putObject(request);
         } catch (IOException exception) {
-            throw new IllegalArgumentException("StorageService - Failed to get the file content: ", exception);
+            throw new IllegalStateException("StorageService - Failed to get the file content: " + exception.getMessage());
         } catch (AmazonServiceException exception) {
-            throw new IllegalStateException("StorageService - Failed to upload the file: ", exception);
+            throw new IllegalStateException("StorageService - Failed to upload the file: " + exception.getMessage());
         }
     }
 
@@ -64,7 +64,7 @@ public class StorageServiceImpl implements StorageService {
         try {
             amazonS3.deleteObject(bucketName, fileObjKeyName);
         } catch (AmazonServiceException exception) {
-            throw new IllegalStateException("StorageService - Failed to remove the file: ", exception);
+            throw new IllegalStateException("StorageService - Failed to remove the file: " + exception.getMessage());
         }
     }
 
