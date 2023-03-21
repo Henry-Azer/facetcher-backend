@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 import jittor as jt
 import sys
-import os
 import urllib.request
 from util.S3Uploader import S3Uploader
 
@@ -38,7 +37,7 @@ try:
     generated_image = cv2.cvtColor(combine_model.generated, cv2.COLOR_BGR2RGB)
     image_bytes = cv2.imencode('.jpg', generated_image)[1].tobytes()
 
-    s3_url = S3Uploader.upload_file(image_bytes, os.path.basename(args_list[0]))
+    s3_url = S3Uploader.upload_file(image_bytes, args_list)
     print('FDL - Output File: ', s3_url)
     jt.gc()
 
