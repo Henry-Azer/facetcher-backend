@@ -1,7 +1,7 @@
 package com.henry.facetcher.processor;
 
 import com.henry.facetcher.dto.UserTrialDto;
-import lombok.AllArgsConstructor;
+import com.henry.facetcher.service.ConfigValueService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -17,15 +17,19 @@ import static com.henry.facetcher.constants.FacetcherConstants.*;
  */
 @Slf4j
 @Component
-@AllArgsConstructor
 public class FDLProcessorImpl implements FDLProcessor {
+    private final ConfigValueService configValueService;
+
+    public FDLProcessorImpl(ConfigValueService configValueService) {
+        this.configValueService = configValueService;
+    }
 
     @Override
     public String process(UserTrialDto userTrialDto) {
         log.info("FDLProcessor: process() called");
         try {
             ProcessBuilder processBuilder = buildFDLProcessBuilder(userTrialDto.getProcessProperties());
-            processBuilder.directory(new File(System.getProperties().get("user.dir") + FDL_DIRECTORY_PATH));
+            processBuilder.directory(new File(System.getProperties().get("user.dir") + configValueService.findConfigValueByConfigKey(FDL_DIRECTORY_PATH)));
             Process process = processBuilder.start();
 
             BufferedReader processOutputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -41,13 +45,16 @@ public class FDLProcessorImpl implements FDLProcessor {
                         exceptionStored = true;
                     }
                 }
-                if (processOutputLine.equals(FDL_EXCEPTION)) userTrialDto.setExceptionOccurred(true);
-                if (processOutputLine.contains(FDL_OUTPUT_FILE)) outputURL = processOutputLine.replace(FDL_OUTPUT_FILE + " ", "");
+                if (processOutputLine.equals(configValueService.findConfigValueByConfigKey(FDL_EXCEPTION)))
+                    userTrialDto.setExceptionOccurred(true);
+                if (processOutputLine.contains(configValueService.findConfigValueByConfigKey(FDL_OUTPUT_FILE)))
+                    outputURL = processOutputLine.replace(configValueService.findConfigValueByConfigKey(FDL_OUTPUT_FILE) + " ", "");
                 System.out.println("FDL Process Output: " + processOutputLine);
             }
 
             int exitCode = process.waitFor();
-            if (exitCode != 0 || (!userTrialDto.getExceptionOccurred() && outputURL.isEmpty())) throw new IllegalStateException("Invalid FDL processor image input, Try again!");
+            if (exitCode != 0 || (!userTrialDto.getExceptionOccurred() && outputURL.isEmpty()))
+                throw new IllegalStateException("Invalid FDL processor image input, Try again!");
             log.info("FDL Process Output: Exit Code: " + exitCode);
             log.info("FDLProcessor: process() ended");
 
@@ -59,6 +66,7 @@ public class FDLProcessorImpl implements FDLProcessor {
 
     private ProcessBuilder buildFDLProcessBuilder(List<String> properties) {
         log.info("FDLProcessor: buildFDLProcessBuilder() called");
-        return new ProcessBuilder("python3", System.getProperties().get("user.dir") + FDL_PATH, String.join(" ", properties));
+        return new ProcessBuilder("python3", System.getProperties().get("user.dir") +
+                configValueService.findConfigValueByConfigKey(FDL_PATH), String.join(" ", properties));
     }
 }

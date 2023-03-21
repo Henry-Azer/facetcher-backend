@@ -36,13 +36,15 @@ public class UserServiceImpl implements UserService {
     private final JWTAuthenticationManager jwtAuthenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final StorageManager storageService;
+    private final ConfigValueService configValueService;
 
-    public UserServiceImpl(UserTransformer userTransformer, UserDao userDao, JWTAuthenticationManager jwtAuthenticationManager, @Lazy PasswordEncoder passwordEncoder, StorageManager storageService) {
+    public UserServiceImpl(UserTransformer userTransformer, UserDao userDao, JWTAuthenticationManager jwtAuthenticationManager, @Lazy PasswordEncoder passwordEncoder, StorageManager storageService, ConfigValueService configValueService) {
         this.userTransformer = userTransformer;
         this.userDao = userDao;
         this.jwtAuthenticationManager = jwtAuthenticationManager;
         this.passwordEncoder = passwordEncoder;
         this.storageService = storageService;
+        this.configValueService = configValueService;
     }
 
     @Override
@@ -118,9 +120,9 @@ public class UserServiceImpl implements UserService {
     public UserDto setUserProfilePicture(MultipartFile photo) {
         log.info("UserService: setUserProfilePicture() called");
         UserDto userDto = findUserByEmail(jwtAuthenticationManager.getCurrentUserEmail());
-        if (userDto.getProfilePictureUrl() != null) storageService.removeFile(userDto.getProfilePictureUrl(), FPP_BUCKET);
+        if (userDto.getProfilePictureUrl() != null) storageService.removeFile(userDto.getProfilePictureUrl(), configValueService.findConfigValueByConfigKey(FPP_BUCKET));
         userDto.setProfilePictureUrl(storageService.uploadFile(photo, StringUtil.getRandomImageName(photo.getOriginalFilename(),
-                userDto.getId().toString()), FPP_CDN, FPP_BUCKET));
+                userDto.getId().toString()), configValueService.findConfigValueByConfigKey(FPP_CDN), configValueService.findConfigValueByConfigKey(FPP_BUCKET)));
         return update(userDto, userDto.getId());
     }
 
@@ -129,7 +131,7 @@ public class UserServiceImpl implements UserService {
         log.info("UserService: removeUserProfilePicture() called");
         UserDto userDto = findUserByEmail(jwtAuthenticationManager.getCurrentUserEmail());
         if (userDto.getProfilePictureUrl() != null) {
-            storageService.removeFile(userDto.getProfilePictureUrl(), FPP_BUCKET);
+            storageService.removeFile(userDto.getProfilePictureUrl(), configValueService.findConfigValueByConfigKey(FPP_BUCKET));
             userDto.setProfilePictureUrl(null);
         }
         return update(userDto, userDto.getId());

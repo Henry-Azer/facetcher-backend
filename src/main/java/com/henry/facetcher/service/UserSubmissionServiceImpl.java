@@ -31,6 +31,7 @@ public class UserSubmissionServiceImpl implements UserSubmissionService {
     private final UserTrialService userTrialService;
     private final UserService userService;
     private final ImageService imageService;
+    private final ConfigValueService configValueService;
     private final JWTAuthenticationManager authenticationManager;
 
     @Override
@@ -122,7 +123,7 @@ public class UserSubmissionServiceImpl implements UserSubmissionService {
         userSubmissionDto.setSubmissionDate(LocalDateTime.now());
         userSubmissionDto.setDescription(userTrialDto.getDescription());
         userSubmissionDto.setTrialCount(userTrialService.getDao().getRepository().countAllByUserSubmissionId(userSubmissionDto.getId()));
-        userSubmissionDto.setSubmissionMessage(authenticationManager.getCurrentUserEmail() + SUBMISSION_MESSAGE + userSubmissionDto.getSubmissionDate());
+        userSubmissionDto.setSubmissionMessage(authenticationManager.getCurrentUserEmail() + configValueService.findConfigValueByConfigKey(SUBMISSION_MESSAGE) + userSubmissionDto.getSubmissionDate());
         return userSubmissionDto;
     }
 }

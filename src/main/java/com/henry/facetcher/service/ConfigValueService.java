@@ -11,4 +11,5 @@ import com.henry.facetcher.transformer.ConfigValueTransformer;
  * @since 13/03/2023
  */
 public interface ConfigValueService extends BaseService<ConfigValue, ConfigValueDto, ConfigValueDao, ConfigValueTransformer> {
+    String findConfigValueByConfigKey(String key);
 }

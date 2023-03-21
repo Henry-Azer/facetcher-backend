@@ -35,10 +35,11 @@ public class UserTrialServiceImpl implements UserTrialService {
     private final FDLProcessor fdlProcessor;
     private final JWTAuthenticationManager authenticationManager;
     private final UserSubmissionService userSubmissionService;
+    private final ConfigValueService configValueService;
 
     public UserTrialServiceImpl(UserTrialTransformer userTrialTransformer, UserTrialDao userTrialDao, FDLProcessor fdlProcessor,
                                 JWTAuthenticationManager authenticationManager, @Lazy UserSubmissionService userSubmissionService,
-                                ImageService imageService, UserService userService) {
+                                ImageService imageService, UserService userService, ConfigValueService configValueService) {
         this.userTrialTransformer = userTrialTransformer;
         this.userTrialDao = userTrialDao;
         this.fdlProcessor = fdlProcessor;
@@ -46,6 +47,7 @@ public class UserTrialServiceImpl implements UserTrialService {
         this.userSubmissionService = userSubmissionService;
         this.imageService = imageService;
         this.userService = userService;
+        this.configValueService = configValueService;
     }
 
     @Override
@@ -104,7 +106,7 @@ public class UserTrialServiceImpl implements UserTrialService {
         String outputURL = fdlProcessor.process(userTrialDto);
         userTrialDto.setTrialDate(LocalDateTime.now());
         if (!outputURL.isEmpty()) userTrialDto.setOutputImage(imageService.create(imageService.constructImageDto(userTrialDto.getInputImage().getName(), outputURL)));
-        userTrialDto.setTrailMessage(authenticationManager.getCurrentUserEmail() + TRIAL_MESSAGE + userTrialDto.getTrialDate());
+        userTrialDto.setTrailMessage(authenticationManager.getCurrentUserEmail() + configValueService.findConfigValueByConfigKey(TRIAL_MESSAGE) + userTrialDto.getTrialDate());
         userTrialDto.setDescription(userTrialDto.getUserSubmission().getDescription());
         userTrialDto.setTitle(userTrialDto.getUserSubmission().getTitle());
         UserTrialDto dbUserTrialDto = create(userTrialDto);

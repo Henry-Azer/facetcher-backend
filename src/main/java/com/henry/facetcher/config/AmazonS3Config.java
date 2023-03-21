@@ -5,9 +5,11 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import org.springframework.beans.factory.annotation.Value;
+import com.henry.facetcher.service.ConfigValueService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import static com.henry.facetcher.constants.FacetcherConstants.*;
 
 /**
  * @author Henry Azer
@@ -15,21 +17,15 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class AmazonS3Config {
-    private final String accessKey;
-    private final String secretKey;
-    private final String region;
+    private final ConfigValueService configValueService;
 
-    public AmazonS3Config(@Value("${cloud.aws.region.static}") String region,
-                          @Value("${cloud.aws.credentials.access-key}") String accessKey,
-                          @Value("${cloud.aws.credentials.secret-key}") String secretKey) {
-        this.accessKey = accessKey;
-        this.secretKey = secretKey;
-        this.region = region;
+    public AmazonS3Config(ConfigValueService configValueService) {
+        this.configValueService = configValueService;
     }
 
     @Bean
     public AmazonS3 s3() {
-        AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
-        return AmazonS3ClientBuilder.standard().withRegion(region).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
+        AWSCredentials awsCredentials = new BasicAWSCredentials(configValueService.findConfigValueByConfigKey(ACCESS_KEY), configValueService.findConfigValueByConfigKey(SECRET_KEY));
+        return AmazonS3ClientBuilder.standard().withRegion(configValueService.findConfigValueByConfigKey(REGION_STATIC)).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
     }
 }

@@ -1,29 +1,30 @@
 package com.henry.facetcher.storage;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.henry.facetcher.service.ConfigValueService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
+import static com.henry.facetcher.constants.FacetcherConstants.CDN_URL;
+import static com.henry.facetcher.constants.FacetcherConstants.S3_URL;
 
 @Slf4j
 @Component
 public class StorageManager {
     private final AmazonS3 amazonS3;
-    private final String cdnURL;
-    private final String s3URL;
+    private final ConfigValueService configValueService;
 
-    public StorageManager(AmazonS3 amazonS3,
-                          @Value("${cloud.aws.s3.url}") String s3URL,
-                          @Value("${cloud.aws.cdn.url}") String cdnURL) {
+    public StorageManager(AmazonS3 amazonS3, ConfigValueService configValueService) {
         this.amazonS3 = amazonS3;
-        this.cdnURL = cdnURL;
-        this.s3URL = s3URL;
+        this.configValueService = configValueService;
     }
 
     public String uploadFile(MultipartFile file, String fileName, String cdn, String bucket) {
         log.info("StorageManager: uploadFile() - called");
-        StorageService storageService = new StorageServiceImpl(amazonS3, s3URL, cdnURL.replace("xx", cdn), bucket);
+        StorageService storageService = new StorageServiceImpl(
+                amazonS3, configValueService.findConfigValueByConfigKey(S3_URL),
+                configValueService.findConfigValueByConfigKey(CDN_URL).replace("xx", cdn), bucket);
         return storageService.uploadFile(file, fileName);
     }
 

@@ -5,8 +5,6 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,17 +16,13 @@ import java.util.Optional;
  * @author Henry Azer
  * @since  07/03/2023
  */
-@Service
 public class StorageServiceImpl implements StorageService {
     private final AmazonS3 amazonS3;
     private final String bucketName;
     private final String cdnUrl;
     private final String s3Url;
 
-    public StorageServiceImpl(AmazonS3 amazonS3,
-                              @Value("${cloud.aws.s3.url:}") String s3Url,
-                              @Value("${cloud.aws.cdn.url:}") String cdnUrl,
-                              @Value("${cloud.aws.bucket-name}") String bucketName) {
+    public StorageServiceImpl(AmazonS3 amazonS3, String s3Url, String cdnUrl, String bucketName) {
         this.amazonS3 = amazonS3;
         this.bucketName = bucketName;
         this.cdnUrl = cdnUrl;

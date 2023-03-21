@@ -5,6 +5,7 @@ import com.henry.facetcher.dto.UserLogDto;
 import com.henry.facetcher.dto.base.response.AuthResponse;
 import com.henry.facetcher.enums.UserLogStatus;
 import com.henry.facetcher.security.jwt.JWTAuthenticationUtil;
+import com.henry.facetcher.service.ConfigValueService;
 import com.henry.facetcher.service.UserLogService;
 import com.henry.facetcher.service.UserService;
 import lombok.AllArgsConstructor;
@@ -29,19 +30,20 @@ import static com.henry.facetcher.constants.FacetcherConstants.LOGGED_OUT_ASPECT
 public class AuthenticationServiceAspect {
     private final UserService userService;
     private final UserLogService userLogService;
+    private final ConfigValueService configValueService;
     private final JWTAuthenticationUtil authenticationUtil;
 
     @AfterReturning(pointcut = "execution(* com.henry.facetcher.manager.JWTAuthenticationManager.login(..))", returning = "authResponse")
     public void logAfterUserLogin(AuthResponse authResponse) {
         log.info("AuthenticationServiceAspect: logAfterUserLogin() called");
-        userLogService.create(constructUserLogDto(UserLogStatus.LOGIN, LOGGED_IN_ASPECT, userService.findUserByEmail(authenticationUtil.getAccessTokenUserEmail(authResponse.getAccessToken()))));
+        userLogService.create(constructUserLogDto(UserLogStatus.LOGIN, configValueService.findConfigValueByConfigKey(LOGGED_IN_ASPECT), userService.findUserByEmail(authenticationUtil.getAccessTokenUserEmail(authResponse.getAccessToken()))));
         log.info("AuthenticationServiceAspect: logAfterUserLogin() ended");
     }
 
     @AfterReturning(pointcut = "execution(* com.henry.facetcher.manager.JWTAuthenticationManager.logout(..))")
     public void logAfterUserLogout() {
         log.info("AuthenticationServiceAspect: logAfterUserLogout() called");
-        userLogService.create(constructUserLogDto(UserLogStatus.LOGOUT, LOGGED_OUT_ASPECT, userService.getCurrentUser()));
+        userLogService.create(constructUserLogDto(UserLogStatus.LOGOUT, configValueService.findConfigValueByConfigKey(LOGGED_OUT_ASPECT), userService.getCurrentUser()));
         log.info("AuthenticationServiceAspect: logAfterUserLogin() ended");
     }
 

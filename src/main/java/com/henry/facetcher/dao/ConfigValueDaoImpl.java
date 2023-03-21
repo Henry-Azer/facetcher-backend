@@ -1,7 +1,10 @@
 package com.henry.facetcher.dao;
 
 import com.henry.facetcher.dao.repo.ConfigValueRepo;
+import com.henry.facetcher.model.ConfigValue;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 /**
  * @author Henry Azer
@@ -18,5 +21,10 @@ public class ConfigValueDaoImpl implements ConfigValueDao {
     @Override
     public ConfigValueRepo getRepository() {
         return configValueRepo;
+    }
+
+    @Override
+    public Optional<ConfigValue> findConfigValueByConfigKey(String key) {
+        return getRepository().findByKeyAndMarkedAsDeletedFalse(key);
     }
 }
