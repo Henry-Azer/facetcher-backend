@@ -5,6 +5,7 @@ import com.henry.facetcher.model.CloudFile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Henry Azer
@@ -26,5 +27,10 @@ public class CloudFileDaoImpl implements CloudFileDao {
     @Override
     public List<CloudFile> findCloudAssetsFiles(String type) {
         return getRepository().findAllByTypeAndMarkedAsDeletedFalse(type);
+    }
+
+    @Override
+    public Optional<CloudFile> findCloudFileByFileName(String fileName) {
+        return getRepository().findByFileNameAndMarkedAsDeletedFalse(fileName);
     }
 }

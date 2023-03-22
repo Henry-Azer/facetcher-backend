@@ -5,6 +5,7 @@ import com.henry.facetcher.dao.repo.CloudFileRepo;
 import com.henry.facetcher.model.CloudFile;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Henry Azer
@@ -12,4 +13,5 @@ import java.util.List;
  */
 public interface CloudFileDao extends BaseDao<CloudFile, CloudFileRepo> {
     List<CloudFile> findCloudAssetsFiles(String type);
+    Optional<CloudFile> findCloudFileByFileName(String fileName);
 }

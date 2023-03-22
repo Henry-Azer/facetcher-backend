@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Henry Azer
@@ -13,4 +14,5 @@ import java.util.List;
 @Repository
 public interface CloudFileRepo extends JpaRepository<CloudFile, Long> {
     List<CloudFile> findAllByTypeAndMarkedAsDeletedFalse(String type);
+    Optional<CloudFile> findByFileNameAndMarkedAsDeletedFalse(String fileName);
 }
