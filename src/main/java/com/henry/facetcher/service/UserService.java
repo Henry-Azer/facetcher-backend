@@ -2,6 +2,7 @@ package com.henry.facetcher.service;
 
 import com.henry.facetcher.dao.UserDao;
 import com.henry.facetcher.dto.UserDto;
+import com.henry.facetcher.dto.UserPasswordDto;
 import com.henry.facetcher.model.User;
 import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
@@ -24,4 +25,5 @@ public interface UserService extends BaseService<User, UserDto, UserDao, UserTra
     UserDto toggleUserDeletionById(Long userId);
     UserDto setUserProfilePicture(MultipartFile photo);
     UserDto removeUserProfilePicture();
+    UserDto updateUserPassword(UserPasswordDto userPasswordDto);
 }

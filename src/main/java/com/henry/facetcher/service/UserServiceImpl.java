@@ -2,6 +2,7 @@ package com.henry.facetcher.service;
 
 import com.henry.facetcher.dao.UserDao;
 import com.henry.facetcher.dto.UserDto;
+import com.henry.facetcher.dto.UserPasswordDto;
 import com.henry.facetcher.model.User;
 import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
@@ -16,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityExistsException;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.henry.facetcher.constants.FacetcherConstants.FPP_BUCKET;
 import static com.henry.facetcher.constants.FacetcherConstants.FPP_CDN;
@@ -134,6 +132,16 @@ public class UserServiceImpl implements UserService {
             storageService.removeFile(userDto.getProfilePictureUrl(), configValueService.findConfigValueByConfigKey(FPP_BUCKET));
             userDto.setProfilePictureUrl(null);
         }
+        return update(userDto, userDto.getId());
+    }
+
+    @Override
+    public UserDto updateUserPassword(UserPasswordDto userPasswordDto) {
+        log.info("UserService: updateUserPassword() called");
+        UserDto userDto = findUserByEmail(jwtAuthenticationManager.getCurrentUserEmail());
+        if (!passwordEncoder.matches(userPasswordDto.getPassword(), userDto.getPassword()))
+            throw new IllegalArgumentException("User old password is invalid.");
+        userDto.setPassword(passwordEncoder.encode(userPasswordDto.getNewPassword()));
         return update(userDto, userDto.getId());
     }
 }

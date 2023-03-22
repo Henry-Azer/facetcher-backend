@@ -2,6 +2,7 @@ package com.henry.facetcher.controller;
 
 import com.henry.facetcher.controller.base.BaseController;
 import com.henry.facetcher.dto.UserDto;
+import com.henry.facetcher.dto.UserPasswordDto;
 import com.henry.facetcher.dto.base.response.ApiResponse;
 import com.henry.facetcher.service.UserService;
 import lombok.AllArgsConstructor;
@@ -77,13 +78,23 @@ public class UserController implements BaseController<UserService> {
                 "User deletion toggled successfully.", getService().toggleUserDeletionById(userId));
     }
 
+    @PutMapping("/update-password")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public ApiResponse updateUserPassword(@RequestBody UserPasswordDto userPasswordDto) {
+        log.info("UserController: updateUserPassword() called");
+        return new ApiResponse(true, LocalDateTime.now().toString(),
+                "User password updated successfully.", getService().updateUserPassword(userPasswordDto));
+    }
+
     @PostMapping(value = "/profile-picture", consumes = {"multipart/form-data"})
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse uploadUserProfilePicture(@RequestBody MultipartFile photo) {
         return new ApiResponse(true, LocalDateTime.now().toString(),
                 "User profile picture uploaded successfully.", getService().setUserProfilePicture(photo));
     }
 
     @DeleteMapping(value = "/profile-picture")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ApiResponse removeUserProfilePicture() {
         return new ApiResponse(true, LocalDateTime.now().toString(),
                 "User profile picture deleted successfully.", getService().removeUserProfilePicture());
