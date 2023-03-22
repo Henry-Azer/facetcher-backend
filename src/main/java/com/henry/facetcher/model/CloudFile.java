@@ -30,6 +30,9 @@ public class CloudFile extends BaseEntity {
     @Column(name = "file_name", nullable = false)
     private String fileName;
 
+    @Column(name = "type", nullable = false)
+    private String type;
+
     @Column(name = "bucket_name", nullable = false)
     private String bucketName;
 

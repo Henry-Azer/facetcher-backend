@@ -14,6 +14,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 public class CloudFileDto extends BaseDto {
     private Long id;
+    private String type;
     private String fileName;
     private String bucketName;
     private String cdnCode;
