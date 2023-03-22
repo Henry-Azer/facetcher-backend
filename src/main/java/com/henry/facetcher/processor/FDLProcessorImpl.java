@@ -53,6 +53,11 @@ public class FDLProcessorImpl implements FDLProcessor {
                 System.out.println("FDL Process Output: " + processOutputLine);
             }
 
+            BufferedReader processErrorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String processErrorLine;
+            while ((processErrorLine = processErrorReader.readLine()) != null)
+                System.out.println("FDL Process Error: " + processErrorLine);
+
             int exitCode = process.waitFor();
             if (exitCode != 0 || (!userTrialDto.getExceptionOccurred() && outputURL.isEmpty()))
                 throw new IllegalStateException("Invalid FDL processor image input, Try again!");
