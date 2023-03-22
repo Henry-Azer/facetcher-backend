@@ -25,3 +25,9 @@ CREATE TABLE public.cloud_file
     CONSTRAINT cloud_file_pk PRIMARY KEY (id)
 
 ) TABLESPACE pg_default;
+
+
+-- changeset henry:20230322_add_type_column_to_cloud_file_table
+ALTER TABLE public.cloud_file
+ADD COLUMN type CHARACTER VARYING(250) NOT NULL;
+
