@@ -54,6 +54,22 @@ public class UserController implements BaseController<UserService> {
                 "Email existence checked successfully.", getService().isUserExistsByEmail(email));
     }
 
+    @GetMapping("/find-all")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ApiResponse findAllUsers() {
+        log.info("UserController: findAllUsers() called");
+        return new ApiResponse(true, LocalDateTime.now().toString(),
+                "Users fetched successfully.", getService().findAll());
+    }
+
+    @GetMapping("/find-by-id/{userId}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    public ApiResponse findUserByUserId(@PathVariable Long userId) {
+        log.info("UserController: findUserByUserId() called");
+        return new ApiResponse(true, LocalDateTime.now().toString(),
+                "User fetched successfully.", getService().findById(userId));
+    }
+
     @PostMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ApiResponse createUser(@RequestBody UserDto userDto) {
