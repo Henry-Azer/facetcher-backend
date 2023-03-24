@@ -12,6 +12,10 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import static com.henry.facetcher.constants.FacetcherConstants.*;
 
+/**
+ * @author Henry Azer
+ * @since 23/02/2023
+ */
 @Slf4j
 @Service
 @AllArgsConstructor
