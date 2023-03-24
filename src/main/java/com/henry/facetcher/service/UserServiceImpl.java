@@ -3,6 +3,8 @@ package com.henry.facetcher.service;
 import com.henry.facetcher.dao.UserDao;
 import com.henry.facetcher.dto.UserDto;
 import com.henry.facetcher.dto.UserPasswordDto;
+import com.henry.facetcher.dto.base.notification.NotificationDto;
+import com.henry.facetcher.mail.MailSender;
 import com.henry.facetcher.model.User;
 import com.henry.facetcher.enums.Gender;
 import com.henry.facetcher.enums.UserMartialStatus;
@@ -17,10 +19,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityExistsException;
+import javax.transaction.Transactional;
 import java.util.*;
 
-import static com.henry.facetcher.constants.FacetcherConstants.FPP_BUCKET;
-import static com.henry.facetcher.constants.FacetcherConstants.FPP_CDN;
+import static com.henry.facetcher.constants.FacetcherConstants.*;
 
 /**
  * @author Henry Azer
@@ -34,14 +36,16 @@ public class UserServiceImpl implements UserService {
     private final JWTAuthenticationManager jwtAuthenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final StorageManager storageService;
+    private final MailSender mailSender;
     private final ConfigValueService configValueService;
 
-    public UserServiceImpl(UserTransformer userTransformer, UserDao userDao, JWTAuthenticationManager jwtAuthenticationManager, @Lazy PasswordEncoder passwordEncoder, StorageManager storageService, ConfigValueService configValueService) {
+    public UserServiceImpl(UserTransformer userTransformer, UserDao userDao, JWTAuthenticationManager jwtAuthenticationManager, @Lazy PasswordEncoder passwordEncoder, StorageManager storageService, MailSender mailSender, ConfigValueService configValueService) {
         this.userTransformer = userTransformer;
         this.userDao = userDao;
         this.jwtAuthenticationManager = jwtAuthenticationManager;
         this.passwordEncoder = passwordEncoder;
         this.storageService = storageService;
+        this.mailSender = mailSender;
         this.configValueService = configValueService;
     }
 
@@ -56,16 +60,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserDto create(UserDto dto) {
         log.info("UserService: create() called");
-        // check if email already exists
-        if (getDao().isUserExistsByEmail(dto.getEmail()))
-            throw new EntityExistsException("User email already exists - " + dto.getEmail());
+        if (getDao().isUserExistsByEmail(dto.getEmail())) throw new EntityExistsException("User email already exists - " + dto.getEmail());
+        String password = dto.getPassword();
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-        User transformedDtoToEntity = getTransformer().transformDtoToEntity(dto);
-        return getTransformer().transformEntityToDto(getDao().create(transformedDtoToEntity));
+        UserDto userDto = getTransformer().transformEntityToDto(getDao().create(getTransformer().transformDtoToEntity(dto)));
+        userDto.setPassword(password);
+        mailSender.sendEmail(constructCreateUserNotificationDto(userDto));
+        return userDto;
     }
-
     @Override
     public UserDto findById(Long userId) {
         log.info("UserService: findById() called");
@@ -143,5 +148,18 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("User old password is invalid.");
         userDto.setPassword(passwordEncoder.encode(userPasswordDto.getNewPassword()));
         return update(userDto, userDto.getId());
+    }
+
+    private NotificationDto constructCreateUserNotificationDto(UserDto userDto) {
+        log.info("UserService: constructCreateUserNotificationDto() called");
+        NotificationDto notificationDto = new NotificationDto();
+        // change to user mail when be out of ses sandbox
+        notificationDto.setToEmail(configValueService.findConfigValueByConfigKey(TO_MAIL));
+        notificationDto.setTemplateName(configValueService.findConfigValueByConfigKey(CREATE_ACCOUNT_MAIL_TEMPLATE));
+        notificationDto.setSubject(configValueService.findConfigValueByConfigKey(CREATE_ACCOUNT_MAIL_SUBJECT));
+        Map<String, Object> templateModel = new HashMap<>();
+        templateModel.put(configValueService.findConfigValueByConfigKey(CREATE_ACCOUNT_MAIL_MODEL), userDto);
+        notificationDto.setTemplateModel(templateModel);
+        return notificationDto;
     }
 }
