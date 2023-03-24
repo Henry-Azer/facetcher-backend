@@ -350,9 +350,9 @@
                                                                                     mso-line-height-alt: 30.6px;
                                                                                 "
                                                                             >
-                                                                                <span>
-                                                                                    Dear
-                                                                                </span>
+                                                                                <span
+                                                                                    >Dear</span
+                                                                                >
                                                                                 <span
                                                                                     th:text="${user.getFirstName()}"
                                                                                     th:remove="tag"
@@ -361,7 +361,12 @@
                                                                                     th:text="${user.getLastName()}"
                                                                                     th:remove="tag"
                                                                                 ></span>
+                                                                                <span
+                                                                                    >,</span
+                                                                                >
+                                                                                <!-- add the comma here -->
                                                                             </p>
+
                                                                             <p
                                                                                 style="
                                                                                     margin: 0;
