@@ -55,7 +55,7 @@ public class UserController implements BaseController<UserService> {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ApiResponse createUser(@RequestBody UserDto userDto) {
         log.info("UserController: createUser() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
