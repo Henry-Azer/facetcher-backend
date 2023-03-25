@@ -362,11 +362,10 @@
                                                                                     >Dear</span
                                                                                 >
                                                                                 <span
-                                                                                    th:text="${user.getFirstName()} ${user.getLastName()},"
-                                                                                    th:remove="tag"
+                                                                                    th:text="|${user.getFirstName()} ${user.getLastName()},|"
                                                                                 ></span>
                                                                             </p>
-
+                                                                            <br />
                                                                             <p
                                                                                 style="
                                                                                     margin: 0;
@@ -413,6 +412,7 @@
                                                                                     mso-line-height-alt: 21.6px;
                                                                                 "
                                                                             ></p>
+                                                                            <br />
                                                                             <p
                                                                                 style="
                                                                                     margin: 0;
@@ -452,6 +452,10 @@
                                                                                 <span
                                                                                     th:text="${user.getEmail()}"
                                                                                     th:remove="tag"
+                                                                                    style="
+                                                                                        text-decoration: none;
+                                                                                        color: inherit;
+                                                                                    "
                                                                                 ></span>
                                                                             </p>
                                                                             <p
@@ -472,6 +476,7 @@
                                                                                     th:remove="tag"
                                                                                 ></span>
                                                                             </p>
+                                                                            <br />
                                                                             <p
                                                                                 style="
                                                                                     margin: 0;
@@ -522,6 +527,7 @@
                                                                                     us.
                                                                                 </span>
                                                                             </p>
+                                                                            <br />
                                                                             <p
                                                                                 style="
                                                                                     margin: 0;
