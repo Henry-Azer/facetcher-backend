@@ -90,9 +90,32 @@ public class UserTrialServiceImpl implements UserTrialService {
     }
 
     @Override
+    public List<UserTrialDto> getAllSucceededUserTrials() {
+        return getTransformer().transformEntityToDto(getDao().getAllSucceededUserTrials());
+    }
+
+    @Override
+    public List<UserTrialDto> findAllUserTrialsByCurrentUser() {
+        log.info("UserTrialService: findAllUserTrialsByCurrentUser() called");
+        return getTransformer().transformEntityToDto(getDao().findAllUserTrialsByUserId(userService.getCurrentUser().getId()));
+    }
+
+    @Override
     public List<UserTrialDto> findAllUserTrialsByUserSubmissionId(Long userSubmissionId) {
         log.info("UserTrialService: findAllUserTrialsByUserSubmissionId() called");
         return getTransformer().transformEntityToDto(getDao().findAllUserTrialsByUserSubmissionId(userSubmissionId));
+    }
+
+    @Override
+    public Long findSucceededUserTrialsCountByCurrentUser() {
+        log.info("UserTrialService: findSucceededUserTrialsCountByCurrentUser() called");
+        return getDao().findSucceededUserTrialsCountByUserId(userService.getCurrentUser().getId());
+    }
+
+    @Override
+    public Long findFailedUserTrialsCountByCurrentUser() {
+        log.info("UserTrialService: findFailedUserTrialsCountByCurrentUser() called");
+        return getDao().findFailedUserTrialsCountByUserId(userService.getCurrentUser().getId());
     }
 
     @Override

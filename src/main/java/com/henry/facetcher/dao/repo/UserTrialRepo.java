@@ -16,6 +16,8 @@ public interface UserTrialRepo extends JpaRepository<UserTrial, Long> {
     List<UserTrial> findAllByMarkedAsDeletedFalse();
     Optional<UserTrial> findUserTrialByIdAndMarkedAsDeletedFalse(Long userTrailId);
     List<UserTrial> findAllByUserSubmissionIdAndMarkedAsDeletedFalse(Long userSubmissionId);
-    List<UserTrial> findAllByExceptionOccurredTrueAndMarkedAsDeletedFalse();
+    List<UserTrial> findAllByExceptionOccurredAndMarkedAsDeletedFalse(Boolean exceptionOccurred);
+    List<UserTrial> findAllByUserIdAndMarkedAsDeletedFalse(Long userId);
     Long countAllByUserSubmissionId(Long userSubmissionId);
+    Long countAllByUserIdAndExceptionOccurredAndMarkedAsDeletedFalse(Long userId, Boolean exceptionOccurred);
 }

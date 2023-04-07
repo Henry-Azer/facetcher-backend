@@ -36,11 +36,31 @@ public class UserTrialDaoImpl implements UserTrialDao {
 
     @Override
     public List<UserTrial> findAllFailedUserTrials() {
-        return getRepository().findAllByExceptionOccurredTrueAndMarkedAsDeletedFalse();
+        return getRepository().findAllByExceptionOccurredAndMarkedAsDeletedFalse(true);
+    }
+
+    @Override
+    public List<UserTrial> getAllSucceededUserTrials() {
+        return getRepository().findAllByExceptionOccurredAndMarkedAsDeletedFalse(false);
+    }
+
+    @Override
+    public List<UserTrial> findAllUserTrialsByUserId(Long userId) {
+        return getRepository().findAllByUserIdAndMarkedAsDeletedFalse(userId);
     }
 
     @Override
     public List<UserTrial> findAllUserTrialsByUserSubmissionId(Long userSubmissionId) {
         return getRepository().findAllByUserSubmissionIdAndMarkedAsDeletedFalse(userSubmissionId);
+    }
+
+    @Override
+    public Long findSucceededUserTrialsCountByUserId(Long userId) {
+        return getRepository().countAllByUserIdAndExceptionOccurredAndMarkedAsDeletedFalse(userId, false);
+    }
+
+    @Override
+    public Long findFailedUserTrialsCountByUserId(Long userId) {
+        return getRepository().countAllByUserIdAndExceptionOccurredAndMarkedAsDeletedFalse(userId, true);
     }
 }
