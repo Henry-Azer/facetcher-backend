@@ -1,0 +1,1252 @@
+{
+	"info": {
+		"_postman_id": "824f3ba4-6677-4b1c-9e15-6c854d79f0ec",
+		"name": "[GP] Facetcher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login - user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@facetcher.com\",\r\n    \"password\": \"user@facetcher\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/auth/log-in",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"log-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[N] login - user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@facetcher.com\",\r\n    \"password\": \"user@facetcher\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/auth/log-in",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"log-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] login - user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@facetcher.com\",\r\n    \"password\": \"user@facetcher\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/auth/log-in",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"log-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login - admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@facetcher.com\",\r\n    \"password\": \"admin@facetcher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/auth/log-in",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"log-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"henryazer@outlook.com\",\r\n    \"refreshToken\":\"ca19cb7a-dc26-4f07-9aee-5a7d085e24dfa528c4fc-1e55-4bbd-a10f-0a97fca40b2d826cd75a-1556-4529-80e4-43d33b0b243d966507ff-67da-41d6-831e-a24c1ed7480ed2c5c152-093c-4e1a-9bf2-bfe4f2d9d2b2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/auth/refresh-token",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/auth/current",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/auth/current",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/auth/log-out",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"auth",
+								"log-out"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get user genders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/find-all-genders",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"find-all-genders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check is email exists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/find-is-email-exists/henryazer@outlook.com",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"find-is-email-exists",
+								"henryazer@outlook.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/find-all",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"find-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] find all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/user/find-all",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"find-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/find-by-id/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"find-by-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"facetcher\",\r\n    \"email\": \"test@facetcher.com\",\r\n    \"password\": \"test@facetcher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"henry\",\r\n    \"lastName\": \"azer\",\r\n    \"email\": \"henryazer@outlook.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle user deletion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/2/toggle-deletion",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"2",
+								"toggle-deletion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"user@facetcher\",\r\n    \"newPassword\": \"user@facetcher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/update-password",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload profile picture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Henry Azer/OneDrive/Pictures/IMG_1616_mh1652640145726.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/profile-picture",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"profile-picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove profile picture",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user/profile-picture",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"profile-picture"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Log",
+			"item": [
+				{
+					"name": "find all user logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-log/find-all",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-log",
+								"find-all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cloud File",
+			"item": [
+				{
+					"name": "find cloud files by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/cloud/find-by-type/ASSETS",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"cloud",
+								"find-by-type",
+								"ASSETS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] find cloud files by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/cloud/find-by-type/ASSETS",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"cloud",
+								"find-by-type",
+								"ASSETS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Henry Azer/Downloads/logo.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/cloud/upload/type/ASSETS/name/logo_1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"cloud",
+								"upload",
+								"type",
+								"ASSETS",
+								"name",
+								"logo_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Henry Azer/Downloads/Vector (6).png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/cloud/upload/type/ASSETS/name/eraser_filled_draw_icon_2",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"cloud",
+								"upload",
+								"type",
+								"ASSETS",
+								"name",
+								"eraser_filled_draw_icon_2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Config Value",
+			"item": [
+				{
+					"name": "create config values",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"key\": \"ACCESS_KEY\",\r\n        \"value\": \"AKIA3B6S3JHV2YSD33N6\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"SECRET_KEY\",\r\n        \"value\": \"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\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"S3_URL\",\r\n        \"value\": \"https://xx.s3.us-east-2.amazonaws.com\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"CDN_URL\",\r\n        \"value\": \"xx.cloudfront.net\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"REGION_STATIC\",\r\n        \"value\": \"us-east-2\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"FROM_MAIL\",\r\n        \"value\": \"seniorsteam23@gmail.com\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"FROM_PERSONAL\",\r\n        \"value\": \"Facetcher\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"FII_CDN\",\r\n        \"value\": \"d3s53aojgba13r\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"FIO_CDN\",\r\n        \"value\": \"d3e4rlz7jqgc00\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"FPP_CDN\",\r\n        \"value\": \"d75z699rfhjzb\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"F_CDN\",\r\n        \"value\": \"d178ormcbshsy5\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"F_BUCKET\",\r\n        \"value\": \"facetcher\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"FII_BUCKET\",\r\n        \"value\": \"facetcher-input-image\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"FOI_BUCKET\",\r\n        \"value\": \"facetcher-output-image\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"FPP_BUCKET\",\r\n        \"value\": \"facetcher-profile-picture\",\r\n        \"type\": \"CLOUD\"\r\n    },\r\n    {\r\n        \"key\": \"LOGGED_IN_ASPECT\",\r\n        \"value\": \" - Login at: \",\r\n        \"type\": \"LOG\"\r\n    },\r\n    {\r\n        \"key\": \"LOGGED_OUT_ASPECT\",\r\n        \"value\": \" - Logout at: \",\r\n        \"type\": \"LOG\"\r\n    },\r\n    {\r\n        \"key\": \"TRIAL_MESSAGE\",\r\n        \"value\": \" - Trial at: \",\r\n        \"type\": \"LOG\"\r\n    },\r\n    {\r\n        \"key\": \"SUBMISSION_MESSAGE\",\r\n        \"value\": \" - Submit at: \",\r\n        \"type\": \"LOG\"\r\n    },\r\n    {\r\n        \"key\": \"FDL_EXCEPTION\",\r\n        \"value\": \"FDL - Exception Occurred\",\r\n        \"type\": \"FDL\"\r\n    },\r\n    {\r\n        \"key\": \"FDL_OUTPUT_FILE\",\r\n        \"value\": \"FDL - Output File: \",\r\n        \"type\": \"FDL\"\r\n    },\r\n    {\r\n        \"key\": \"FDL_PATH\",\r\n        \"value\": \"/src/main/resources/fdl/fdl_model.py\",\r\n        \"type\": \"FDL\"\r\n    },\r\n    {\r\n        \"key\": \"FDL_DIRECTORY_PATH\",\r\n        \"value\": \"/src/main/resources/fdl\",\r\n        \"type\": \"FDL\"\r\n    },\r\n    {\r\n        \"key\": \"CREATE_ACCOUNT_MAIL_TEMPLATE\",\r\n        \"value\": \"create-account-mail-template.html\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"CREATE_ACCOUNT_MAIL_SUBJECT\",\r\n        \"value\": \"Welcome to Facetcher\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"CREATE_ACCOUNT_MAIL_MODEL\",\r\n        \"value\": \"user\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"TO_MAIL\",\r\n        \"value\": \"seniorsteam23@gmail.com\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"CHARSET\",\r\n        \"value\": \"UTF-8\",\r\n        \"type\": \"MAIL\"\r\n    },\r\n    {\r\n        \"key\": \"FROM_MAIL_PERSONAL\",\r\n        \"value\": \"Facetcher <seniorsteam23@gmail.com>\",\r\n        \"type\": \"MAIL\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/config/list",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"config",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "find all roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/role/find-all-roles",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"role",
+								"find-all-roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create role",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"SUB-ADMIN\",\r\n    \"description\": \"temp role\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/role",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update role",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"SUB-ADMIN\",\r\n    \"description\": \"temp roleeee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/role",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle role deletion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/role/2/toggle-deletion",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"role",
+								"2",
+								"toggle-deletion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Role",
+			"item": [
+				{
+					"name": "create user role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"roleId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-role",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle role deletion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/role/2/toggle-deletion",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"role",
+								"2",
+								"toggle-deletion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Trial",
+			"item": [
+				{
+					"name": "find user trial by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/find-by-id/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"find-by-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all user trial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/find-all",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"find-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all user trial succeeded Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/find-all-succeeded",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"find-all-succeeded"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all user trial failed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/find-all-failed",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"find-all-failed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user trial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "inputImageFile",
+									"type": "file",
+									"src": "/home/henry/Downloads/input_4.jpg"
+								},
+								{
+									"key": "userSubmissionId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/process",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[N] create user trial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "inputImageFile",
+									"type": "file",
+									"src": "/C:/Users/Henry Azer/Downloads/Screenshot 2022-12-18 004917.png"
+								},
+								{
+									"key": "userSubmissionId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ngrok}}/facetcher-service/api/user-trial/process",
+							"host": [
+								"{{ngrok}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] create user trial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "inputImageFile",
+									"type": "file",
+									"src": "/home/henry/Downloads/input_4.jpg"
+								},
+								{
+									"key": "userSubmissionId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/user-trial/process",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"process"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "submit user trial",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/submit/3",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"submit",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Submission",
+			"item": [
+				{
+					"name": "find user submission by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-submission/find-by-id/3",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-submission",
+								"find-by-id",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all user submissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-submission/find-all-user-submissions",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-submission",
+								"find-all-user-submissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user submission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"my-girl\",\n    \"description\": \"she is beautiful\",\n    \"gender\": \"FEMALE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-submission",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-submission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[N] create user submission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"a bueaty girl\",\n    \"description\": \"she is beautiful\",\n    \"gender\": \"FEMALE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-submission",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-submission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] create user submission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"my-girl\",\n    \"description\": \"she is\",\n    \"gender\": \"FEMALE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/user-submission",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-submission"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmYWNldGNoZXItYXV0aGVudGljYXRpb24iLCJpc3MiOiJoZW5yeSIsImlhdCI6MTY3OTYxODczNywiZW1haWwiOiJhZG1pbkBmYWNldGNoZXIuY29tIn0.I1m0i9pcmEUmzGdd_it14ry0EoMstc8Ji84V95O4Ul8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:8010",
+			"type": "default"
+		},
+		{
+			"key": "production",
+			"value": "http://18.189.192.65:8010",
+			"type": "string"
+		},
+		{
+			"key": "ngrok",
+			"value": "https://f702-45-243-134-166.eu.ngrok.io",
+			"type": "default"
+		}
+	]
+}
