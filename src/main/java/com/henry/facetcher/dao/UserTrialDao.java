@@ -2,7 +2,6 @@ package com.henry.facetcher.dao;
 
 import com.henry.facetcher.dao.base.BaseDao;
 import com.henry.facetcher.dao.repo.UserTrialRepo;
-import com.henry.facetcher.dto.UserTrialDto;
 import com.henry.facetcher.model.UserTrial;
 
 import java.util.List;
