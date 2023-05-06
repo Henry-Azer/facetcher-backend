@@ -60,12 +60,12 @@ public class UserSubmissionController implements BaseController<UserSubmissionSe
                 "User Submissions fetched successfully.", getService().findAllUserSubmissionsByCurrentUser());
     }
 
-    @GetMapping("/current-user/count")
+    @GetMapping("/count/user/{userId}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public ApiResponse getUserSubmissionsCountByCurrentUser() {
-        log.info("UserSubmissionController: getUserSubmissionsCountByCurrentUser() called");
+    public ApiResponse getUserSubmissionsCountByUserId(@PathVariable Long userId) {
+        log.info("UserSubmissionController: getUserSubmissionsCountByUserId() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Submissions count fetched successfully.", getService().findUserSubmissionsCountByCurrentUser());
+                "User Submissions count fetched successfully.", getService().findUserSubmissionsCountByUserId(userId));
     }
 
     @PostMapping

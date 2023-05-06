@@ -54,9 +54,9 @@ public class UserSubmissionServiceImpl implements UserSubmissionService {
     }
 
     @Override
-    public Long findUserSubmissionsCountByCurrentUser() {
-        log.info("UserSubmissionService: findUserSubmissionsCountByCurrentUser() called");
-        return getDao().countUserSubmissionsByUserId(userService.getCurrentUser().getId());
+    public Long findUserSubmissionsCountByUserId(Long userId) {
+        log.info("UserSubmissionService: findUserSubmissionsCountByUserId() called");
+        return getDao().countUserSubmissionsByUserId(userId);
     }
 
     @Override
