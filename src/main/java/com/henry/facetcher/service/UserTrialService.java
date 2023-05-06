@@ -16,11 +16,11 @@ import java.util.List;
 public interface UserTrialService extends BaseService<UserTrial, UserTrialDto, UserTrialDao, UserTrialTransformer> {
     List<UserTrialDto> findAllUserTrials();
     List<UserTrialDto> findAllFailedUserTrials();
-    List<UserTrialDto> getAllSucceededUserTrials();
-    List<UserTrialDto> findAllUserTrialsByCurrentUser();
+    List<UserTrialDto> findAllSucceededUserTrials();
+    List<UserTrialDto> findAllUserTrialsByUserId(Long userId);
     List<UserTrialDto> findAllUserTrialsByUserSubmissionId(Long userSubmissionId);
-    Long findSucceededUserTrialsCountByCurrentUser();
-    Long findFailedUserTrialsCountByCurrentUser();
+    Long findSucceededUserTrialsCountByUserId(Long userId);
+    Long findFailedUserTrialsCountByUserId(Long userId);
     UserTrialDto processUserTrial(UserTrialDto userTrialDto);
     UserSubmissionDto submitUserTrialById(Long userTrialId);
 }

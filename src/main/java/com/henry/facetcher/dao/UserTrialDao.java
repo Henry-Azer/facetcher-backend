@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserTrialDao extends BaseDao<UserTrial, UserTrialRepo> {
     List<UserTrial> findAllUserTrials();
     List<UserTrial> findAllFailedUserTrials();
-    List<UserTrial> getAllSucceededUserTrials();
+    List<UserTrial> findAllSucceededUserTrials();
     List<UserTrial> findAllUserTrialsByUserId(Long userId);
     List<UserTrial> findAllUserTrialsByUserSubmissionId(Long userSubmissionId);
     Long findSucceededUserTrialsCountByUserId(Long userId);

@@ -55,9 +55,9 @@ public class UserTrialController implements BaseController<UserTrialService> {
     @GetMapping("/find-all-succeeded")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ApiResponse getAllSucceededUserTrials() {
-        log.info("UserTrialController: getAllSucceededUserTrials() called");
+        log.info("UserTrialController: findAllSucceededUserTrials() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Trials succeeded fetched successfully.", getService().getAllSucceededUserTrials());
+                "User Trials succeeded fetched successfully.", getService().findAllSucceededUserTrials());
     }
 
     @GetMapping("/find-all-by-submission-id/{submissionId}")
@@ -68,28 +68,28 @@ public class UserTrialController implements BaseController<UserTrialService> {
                 "User Trials fetched successfully.", getService().findAllUserTrialsByUserSubmissionId(submissionId));
     }
 
-    @GetMapping("/current-user/find-all")
+    @GetMapping("/find-all-by-user-id/{userId}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public ApiResponse findAllUserTrialsByCurrentUser() {
-        log.info("UserTrialController: findAllUserTrialsByCurrentUser() called");
+    public ApiResponse findAllUserTrialsByUserId(@PathVariable Long userId) {
+        log.info("UserTrialController: findAllUserTrialsByUserId() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Trials fetched successfully.", getService().findAllUserTrialsByCurrentUser());
+                "User Trials fetched successfully.", getService().findAllUserTrialsByUserId(userId));
     }
 
-    @GetMapping("/current-user/count-succeeded")
+    @GetMapping("/count-succeeded/user/{userId}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public ApiResponse findSucceededUserTrialsCountByCurrentUser() {
-        log.info("UserTrialController: findSucceededUserTrialsCountByCurrentUser() called");
+    public ApiResponse findSucceededUserTrialsCountByUserId(@PathVariable Long userId) {
+        log.info("UserTrialController: findSucceededUserTrialsCountByUserId() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Trials succeeded count fetched successfully.", getService().findSucceededUserTrialsCountByCurrentUser());
+                "User Trials succeeded count fetched successfully.", getService().findSucceededUserTrialsCountByUserId(userId));
     }
 
-    @GetMapping("/current-user/count-failed")
+    @GetMapping("/count-failed/user/{userId}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    public ApiResponse findFailedUserTrialsCountByCurrentUser() {
-        log.info("UserTrialController: getUserSubmissionsCountByCurrentUser() called");
+    public ApiResponse findFailedUserTrialsCountByUserId(@PathVariable Long userId) {
+        log.info("UserTrialController: findFailedUserTrialsCountByUserId() called");
         return new ApiResponse(true, LocalDateTime.now().toString(),
-                "User Trials failed count fetched successfully.", getService().findFailedUserTrialsCountByCurrentUser());
+                "User Trials failed count fetched successfully.", getService().findFailedUserTrialsCountByUserId(userId));
     }
 
     @PostMapping(value = "/process", consumes = {"multipart/form-data"})

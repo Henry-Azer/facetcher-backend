@@ -40,7 +40,7 @@ public class UserTrialDaoImpl implements UserTrialDao {
     }
 
     @Override
-    public List<UserTrial> getAllSucceededUserTrials() {
+    public List<UserTrial> findAllSucceededUserTrials() {
         return getRepository().findAllByExceptionOccurredAndMarkedAsDeletedFalse(false);
     }
 
