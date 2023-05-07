@@ -82,7 +82,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user@facetcher.com\",\r\n    \"password\": \"user@facetcher\"\r\n}   ",
+							"raw": "{\r\n    \"email\": \"admin@facetcher.com\",\r\n    \"password\": \"admin@facetcher\"\r\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -337,16 +337,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{local}}/facetcher-service/api/user/find-by-id/1",
+							"raw": "{{production}}/facetcher-service/api/user/find-by-id/14",
 							"host": [
-								"{{local}}"
+								"{{production}}"
 							],
 							"path": [
 								"facetcher-service",
 								"api",
 								"user",
 								"find-by-id",
-								"1"
+								"14"
 							]
 						}
 					},
@@ -359,7 +359,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"facetcher\",\r\n    \"email\": \"test@facetcher.com\",\r\n    \"password\": \"test@facetcher\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Henry\",\r\n    \"lastName\": \"Azer\",\r\n    \"email\": \"henry@facetcher.com\",\r\n    \"password\": \"henry@facetcher\",\r\n    \"phoneNumber\": \"01207885279\",\r\n    \"birthdate\": \"2001-07-13\",\r\n    \"country\": \"Egypt\",\r\n    \"age\": 21,\r\n    \"gender\": \"MALE\",\r\n    \"maritalStatus\": \"SINGLE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -367,9 +367,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{local}}/facetcher-service/api/user",
+							"raw": "{{production}}/facetcher-service/api/user",
 							"host": [
-								"{{local}}"
+								"{{production}}"
 							],
 							"path": [
 								"facetcher-service",
@@ -472,7 +472,7 @@
 								{
 									"key": "photo",
 									"type": "file",
-									"src": "/C:/Users/Henry Azer/OneDrive/Pictures/IMG_1616_mh1652640145726.jpg"
+									"src": "/C:/Users/Henry Azer/Downloads/IMG-04042023-2-70526.png"
 								}
 							]
 						},
@@ -480,6 +480,36 @@
 							"raw": "{{local}}/facetcher-service/api/user/profile-picture",
 							"host": [
 								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user",
+								"profile-picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[P] upload profile picture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Henry Azer/Downloads/IMG-09032023-1-60718.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{production}}/facetcher-service/api/user/profile-picture",
+							"host": [
+								"{{production}}"
 							],
 							"path": [
 								"facetcher-service",
@@ -633,7 +663,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/Henry Azer/Downloads/Vector (6).png"
+									"src": "/C:/Users/Henry Azer/Downloads/intro-04.png"
 								}
 							],
 							"options": {
@@ -643,7 +673,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{production}}/facetcher-service/api/cloud/upload/type/ASSETS/name/eraser_filled_draw_icon_2",
+							"raw": "{{production}}/facetcher-service/api/cloud/upload/type/ASSETS/name/intro_04",
 							"host": [
 								"{{production}}"
 							],
@@ -655,7 +685,7 @@
 								"type",
 								"ASSETS",
 								"name",
-								"eraser_filled_draw_icon_2"
+								"intro_04"
 							]
 						}
 					},
@@ -815,7 +845,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\": 1,\r\n    \"roleId\": 2\r\n}",
+							"raw": "{\r\n    \"userId\": 14,\r\n    \"roleId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -823,14 +853,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{local}}/facetcher-service/api/user-role",
+							"raw": "{{production}}/facetcher-service/api/user-role/assign",
 							"host": [
-								"{{local}}"
+								"{{production}}"
 							],
 							"path": [
 								"facetcher-service",
 								"api",
-								"user-role"
+								"user-role",
+								"assign"
 							]
 						}
 					},
@@ -842,9 +873,9 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{local}}/facetcher-service/api/role/2/toggle-deletion",
+							"raw": "{{production}}/facetcher-service/api/role/2/toggle-deletion",
 							"host": [
-								"{{local}}"
+								"{{production}}"
 							],
 							"path": [
 								"facetcher-service",
@@ -938,6 +969,50 @@
 								"api",
 								"user-trial",
 								"find-all-failed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "count all user trial succeeded by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/count-succeeded/user/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"count-succeeded",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "count all user trial failed by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-trial/count-failed/user/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-trial",
+								"count-failed",
+								"user",
+								"1"
 							]
 						}
 					},
@@ -1116,6 +1191,28 @@
 					"response": []
 				},
 				{
+					"name": "count all user submitted submissions by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/facetcher-service/api/user-submission/count-submitted/user/5",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"facetcher-service",
+								"api",
+								"user-submission",
+								"count-submitted",
+								"user",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create user submission",
 					"request": {
 						"method": "POST",
@@ -1207,7 +1304,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmYWNldGNoZXItYXV0aGVudGljYXRpb24iLCJpc3MiOiJoZW5yeSIsImlhdCI6MTY3OTYxODczNywiZW1haWwiOiJhZG1pbkBmYWNldGNoZXIuY29tIn0.I1m0i9pcmEUmzGdd_it14ry0EoMstc8Ji84V95O4Ul8",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmYWNldGNoZXItYXV0aGVudGljYXRpb24iLCJpc3MiOiJoZW5yeSIsImlhdCI6MTY4MzQxNDk0NSwiZW1haWwiOiJhZG1pbkBmYWNldGNoZXIuY29tIn0.iNByp7Gts5chRGyRQa_RGwGCAB5uJYE3APN7n1HiQPE",
 				"type": "string"
 			}
 		]
@@ -1240,7 +1337,7 @@
 		},
 		{
 			"key": "production",
-			"value": "http://18.189.192.65:8010",
+			"value": "http://18.216.155.91:8010",
 			"type": "string"
 		},
 		{
