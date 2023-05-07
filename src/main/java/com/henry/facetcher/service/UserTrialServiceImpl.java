@@ -110,13 +110,13 @@ public class UserTrialServiceImpl implements UserTrialService {
     @Override
     public Long findSucceededUserTrialsCountByUserId(Long userId) {
         log.info("UserTrialService: findSucceededUserTrialsCountByUserId() called");
-        return getDao().findSucceededUserTrialsCountByUserId(userService.getCurrentUser().getId());
+        return getDao().findSucceededUserTrialsCountByUserId(userId);
     }
 
     @Override
     public Long findFailedUserTrialsCountByUserId(Long userId) {
         log.info("UserTrialService: findFailedUserTrialsCountByUserId() called");
-        return getDao().findFailedUserTrialsCountByUserId(userService.getCurrentUser().getId());
+        return getDao().findFailedUserTrialsCountByUserId(userId);
     }
 
     @Override
