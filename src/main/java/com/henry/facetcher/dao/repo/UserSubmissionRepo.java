@@ -16,5 +16,5 @@ public interface UserSubmissionRepo extends JpaRepository<UserSubmission, Long> 
     List<UserSubmission> findAllByMarkedAsDeletedFalse();
     List<UserSubmission> findAllByUserIdAndMarkedAsDeletedFalse(Long userId);
     Optional<UserSubmission> findUserSubmissionByIdAndMarkedAsDeletedFalse(Long userSubmissionId);
-    Long countByUserIdAndMarkedAsDeletedFalse(Long userId);
+    Long countByUserIdAndSubmittedTrueAndMarkedAsDeletedFalse(Long userId);
 }

@@ -40,7 +40,7 @@ public class UserSubmissionDaoImpl implements UserSubmissionDao {
     }
 
     @Override
-    public Long countUserSubmissionsByUserId(Long userId) {
-        return getRepository().countByUserIdAndMarkedAsDeletedFalse(userId);
+    public Long countUserSubmittedSubmissionsByUserId(Long userId) {
+        return getRepository().countByUserIdAndSubmittedTrueAndMarkedAsDeletedFalse(userId);
     }
 }
