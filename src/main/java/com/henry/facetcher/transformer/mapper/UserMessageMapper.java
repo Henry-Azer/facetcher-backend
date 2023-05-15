@@ -11,6 +11,6 @@ import org.mapstruct.Mapper;
  * @author Henry Azer
  * @since 15/02/2023
  */
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, config = GenericMapperConfiguration.class)
+@Mapper(componentModel = "spring", uses = {UserMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR, config = GenericMapperConfiguration.class)
 public interface UserMessageMapper extends BaseMapper<UserMessage, UserMessageDto> {
 }
