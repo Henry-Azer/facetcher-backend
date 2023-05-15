@@ -13,5 +13,5 @@ import java.util.List;
  * @since 15/02/2023
  */
 public interface UserMessageService extends BaseService<UserMessage, UserMessageDto, UserMessageDao, UserMessageTransformer> {
-    List<UserMessage> findAllUserMessages();
+    List<UserMessageDto> findAllUserMessages();
 }

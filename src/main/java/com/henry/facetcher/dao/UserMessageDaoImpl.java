@@ -1,7 +1,7 @@
 package com.henry.facetcher.dao;
 
 import com.henry.facetcher.dao.repo.UserMessageRepo;
-import com.henry.facetcher.dto.UserMessageDto;
+import com.henry.facetcher.model.UserMessage;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class UserMessageDaoImpl implements UserMessageDao {
     }
 
     @Override
-    public List<UserMessageDto> findAllUserMessages() {
+    public List<UserMessage> findAllUserMessages() {
         return getRepository().findAllByMarkedAsDeletedFalse();
     }
 }

@@ -13,5 +13,5 @@ import java.util.List;
  */
 @Repository
 public interface UserMessageRepo extends JpaRepository<UserMessage, Long> {
-    List<UserMessageDto> findAllByMarkedAsDeletedFalse();
+    List<UserMessage> findAllByMarkedAsDeletedFalse();
 }

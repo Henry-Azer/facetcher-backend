@@ -33,9 +33,9 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
     @Override
-    public List<UserMessage> findAllUserMessages() {
+    public List<UserMessageDto> findAllUserMessages() {
         log.info("UserMessageService: findById() called");
-        return getTransformer().transformDtoToEntity(getDao().findAllUserMessages());
+        return getTransformer().transformEntityToDto(getDao().findAllUserMessages());
     }
 
     @Override
