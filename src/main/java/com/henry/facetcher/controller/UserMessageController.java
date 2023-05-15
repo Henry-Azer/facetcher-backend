@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
  * @since 15/02/2023
  */
 @Slf4j
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/user-message")
