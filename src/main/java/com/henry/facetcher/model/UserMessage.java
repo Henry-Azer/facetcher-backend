@@ -27,7 +27,7 @@ public class UserMessage extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_message_id_sequence")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
