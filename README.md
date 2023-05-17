@@ -93,10 +93,10 @@ docker run -d -p 8010:8010 seniorsteam23/facetcher-backend:tagname
 - Postgres DB
 - Circle CI 
 - Docker
-- S3 (AWS)
-- RDS (AWS)
-- EC2 (AWS)
-- SES (AWS)
+- Simple Storage Service (AWS)
+- Relational Database Service (AWS)
+- Elastic Compute Cloud (AWS)
+- Simple Email Service (AWS)
 - CloudFront (AWS) 
 - Amazon Web Services
 
