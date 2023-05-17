@@ -18,7 +18,7 @@ git clone https://github.com/henry-azer/facetcher-backend.git
 mvn clean install
 mvn spring-boot:run
 ```
-- Doker 
+- Docker 
 
 ```
 docker pull seniorsteam23/facetcher-backend:tagname
