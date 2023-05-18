@@ -8,7 +8,8 @@ The use of Spring Boot as the framework for the backend ensures that the system 
 - JDK 11
 - Maven 4
 
-Installation:
+#Installation:
+
 - clone repo
 ```
 git clone https://github.com/henry-azer/facetcher-backend.git
