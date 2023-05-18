@@ -34,25 +34,13 @@ docker run -d -p 8010:8010 seniorsteam23/facetcher-backend:tagname
 # Database Design Architecture
 
 <p align="center">
-  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/68bf1f2c-c912-4f59-a0fd-0223795ce131" alt="Database Design Architecture" width="800">
+  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/d451d325-bc21-4092-8eb4-b401969dfd62" alt="Database Design Architecture" width="800">
 </p>
 
 # Swagger Document
 
 <p align="center">
-  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/1cd8f4fb-bd9c-40d6-9751-d849fdcd02a3" alt="Swagger Document 1" width="800">
-</p>
-<p align="center">
-  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/03b01c98-6486-4ba6-9862-4c39dac98c6a" alt="Swagger Document 2" width="800">
-</p>
-<p align="center">
-  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/05482a7a-1dda-48e5-909f-34d12b8bf4e9" alt="Swagger Document 3" width="800">
-</p>
-<p align="center">
-  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/36e3fd7b-6148-43d8-b6a9-acc6a95b5ad0" alt="Swagger Document 4" width="800">
-</p>
-<p align="center">
-  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/0b9ccc94-045d-43b4-9011-a7c7da26fa82" alt="Swagger Document 5" width="800">
+  <img src="https://github.com/henry-azer/facetcher-backend/assets/102770811/c73b1801-ba62-4d8f-9f45-f1af32424d49" alt="Swagger Document" width="800">
 </p>
 
 # Project Structure
@@ -68,8 +56,40 @@ docker run -d -p 8010:8010 seniorsteam23/facetcher-backend:tagname
 │
 |
 ├──  src - This folder contains the contains the source code for the project.
-     └── main/
-     └── test/java/com/henry/facetcher/
+|    └── main/
+|         └── java/com/henry/facetcher/
+|               └── aop/
+|               └── config/
+|               └── constants/
+|               └── controller/
+|               └── dao/
+|               └── dto/
+|               └── enums/
+|               └── exception/
+|               └── mail/
+|               └── manager/
+|               └── model/
+|               └── processor/
+|               └── security/
+|               └── service/
+|               └── storage/
+|               └── transformer/
+|               └── util/
+|               └── FacetcherApplication.java
+|         └── resources/
+|               └── db
+|               └── fdl
+|               └── json
+|               └── templates
+|               └── application-dev.properties
+|               └── application.properties
+|    └── test/java/com/henry/facetcher/
+|
+|
+├── .gitignore
+|
+|
+├── pom.xml
 ```
 
 # Features
@@ -99,6 +119,9 @@ docker run -d -p 8010:8010 seniorsteam23/facetcher-backend:tagname
 - Simple Email Service (AWS)
 - CloudFront (AWS) 
 - Amazon Web Services
+- lombok
+- mapstruct
+- aspect oriented programming
 
 # Contribution
 
