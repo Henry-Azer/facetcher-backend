@@ -126,3 +126,5 @@ docker run -d -p 8010:8010 seniorsteam23/facetcher-backend:tagname
 # Contribution
 
 Henry Azer, the creator of the Facetcher system backend, has made a significant contribution to the development of the application. The backend is the foundation upon which the entire application is built, and without Henry's expertise and dedication, the application would not be possible.
+
+Written by [@Alber Ashraf](https://github.com/Alber-Ashraf)
